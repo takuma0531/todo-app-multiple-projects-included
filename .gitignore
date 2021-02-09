@@ -119,5 +119,6 @@ dist
 memo.md
 db_data
 mongodb
+mock
 
 # End of https://www.toptal.com/developers/gitignore/api/node
