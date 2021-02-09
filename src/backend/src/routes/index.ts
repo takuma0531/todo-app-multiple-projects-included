@@ -1,2 +1,2 @@
-export { default as todoRoutes } from './todoRoutes';
-export { default as userRoutes } from './userRoutes';
+export { default as todoRouter } from './todoRouter';
+export { default as userRouter } from './userRouter';

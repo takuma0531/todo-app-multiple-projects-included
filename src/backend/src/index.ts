@@ -1,12 +1,10 @@
-
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 
+import Server from './server';
 import { connectDB } from './data-access/connect-db';
-import { todoRoutes, userRoutes } from './routes';
-
-const app = express();
+import { todoRouter, userRouter } from './routes';
 
 // enable dotenv
 config();
@@ -14,19 +12,22 @@ config();
 // connect db
 connectDB();
 
-// add middleware
-app.use(express.json());
-app.use(cors());
+const PORT = process.env.PORT || '5000';
 
-// routes
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/todos', todoRoutes);
-
-// base point
-app.get('/', (_: Request, res: Response) =>
-  res.status(200).send('API is running!')
-);
+const server = new Server({
+  port: PORT,
+  middlewares: [express.json(), cors()],
+  routes: [
+    {
+      baseRoute: '/api/v1/users',
+      router: userRouter,
+    },
+    {
+      baseRoute: '/api/v1/todos',
+      router: todoRouter,
+    },
+  ],
+});
 
 // init server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+server.init();
