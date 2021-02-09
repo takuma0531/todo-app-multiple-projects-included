@@ -1,13 +1,7 @@
 import { Router } from 'express';
-import { userController, todoController } from '../controllers';
+import { userController } from '../controllers';
 
 const router = Router();
-
-router.get('/', todoController.getAll);
-router.get('/:id', todoController.getOneById);
-router.post('/', todoController.createOne);
-router.delete('/:id', todoController.deleteOne);
-router.put('/:id', todoController.updateOne);
 
 router.get('/', userController.getAll);
 router.get('/:id', userController.getOneById);

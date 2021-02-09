@@ -4,7 +4,7 @@ import cors from 'cors';
 import { config } from 'dotenv';
 
 import { connectDB } from './data-access/connect-db';
-import { todoRoutes } from './routes';
+import { todoRoutes, userRoutes } from './routes';
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 // routes
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/todos', todoRoutes);
 
 // base point
