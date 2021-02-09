@@ -118,5 +118,6 @@ dist
 .prettierrc.js
 memo.md
 db_data
+mongodb
 
 # End of https://www.toptal.com/developers/gitignore/api/node

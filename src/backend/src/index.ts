@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 
+import { connectDB } from './data-access/connect-db';
 import { todoRoutes } from './routes';
 
 const app = express();
@@ -10,6 +11,8 @@ const app = express();
 // enable dotenv
 config();
 
+// connect db
+connectDB();
 
 // add middleware
 app.use(express.json());
