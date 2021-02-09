@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 
+import { todoRoutes } from './routes';
 
 const app = express();
 
@@ -13,6 +14,9 @@ config();
 // add middleware
 app.use(express.json());
 app.use(cors());
+
+// routes
+app.use('/api/v1/todos', todoRoutes);
 
 // base point
 app.get('/', (_: Request, res: Response) =>
