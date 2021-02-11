@@ -15,8 +15,11 @@ describe('Todo', () => {
   });
 
   beforeEach(async () => {
-    await connection.collections.users.drop();
-    await connection.collections.todos.drop();
+    const userLength = await connection.collections.users.count();
+    if (userLength > 0) await connection.collections.users.drop();
+
+    const todoLength = await connection.collections.todos.count();
+    if (todoLength > 0) await connection.collections.todos.drop();
 
     //   make an owner
     const newUser = User.new({
