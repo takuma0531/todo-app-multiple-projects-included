@@ -1,5 +1,5 @@
-import { Schema, model, Document } from 'mongoose';
-import User from './user';
+import { Schema, model } from 'mongoose';
+import { UserDocument, UserModel } from '../../../typings/models/user';
 
 const userSchema = new Schema({
   username: {
@@ -50,8 +50,6 @@ const userSchema = new Schema({
   ],
 });
 
-interface UserDocument extends User, Document {}
+const User = model<UserDocument, UserModel>('User', userSchema);
 
-const userModel = model<UserDocument>('User', userSchema);
-
-export { userModel, UserDocument };
+export { User };

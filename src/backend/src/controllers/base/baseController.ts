@@ -1,16 +1,16 @@
 import * as express from 'express';
 
 import HttpStatusCode from '../../enums/httpStatusCode';
-import { BaseDto } from '../../typings/dtos/base';
+import { BaseReadDto } from '../../typings/dtos/base';
 
 abstract class BaseController {
-  public ok<TDto extends BaseDto>(res: express.Response, data?: TDto | Array<TDto>) {
+  public ok<TReadDto extends BaseReadDto>(res: express.Response, data?: TReadDto | Array<TReadDto>) {
     if (!data) return res.sendStatus(HttpStatusCode.OK);
 
     return res.status(HttpStatusCode.OK).json(data);
   }
 
-  public created<TDto extends BaseDto>(res: express.Response, data: TDto, message: string = 'Created') {
+  public created<TReadDto extends BaseReadDto>(res: express.Response, data: TReadDto, message: string = 'Created') {
     return res.status(HttpStatusCode.CREATED).location(`${data.id}`).json({ message, source: data });
   }
 

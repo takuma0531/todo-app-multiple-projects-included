@@ -1,5 +1,5 @@
-import { Schema, model, Document } from 'mongoose';
-import Todo from './todo';
+import { Schema, model } from 'mongoose';
+import { TodoDocument, TodoModel } from '../../../typings/models/todo';
 
 const todoSchema = new Schema({
   title: {
@@ -36,8 +36,6 @@ const todoSchema = new Schema({
   ],
 });
 
-export interface TodoDocument extends Todo, Document {}
+const Todo = model<TodoDocument, TodoModel>('Todo', todoSchema);
 
-const todoModel = model<TodoDocument>('Todo', todoSchema);
-
-export { todoModel };
+export { Todo };
