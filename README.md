@@ -38,7 +38,9 @@ run the server
 
 ```
 cd src/backend
-yarn run dev
+# add content in .env referring to a .env.example
+touch .env
+yarn dev
 ```
 
 ## How to run tests
