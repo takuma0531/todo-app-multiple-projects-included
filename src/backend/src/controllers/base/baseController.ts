@@ -1,15 +1,13 @@
 import * as express from 'express';
 
 import HttpStatusCode from '../../enums/httpStatusCode';
-import ContentType from '../../enums/ContentType';
 import { BaseDto } from '../../typings/dtos/base';
 
 abstract class BaseController {
   public ok<TDto extends BaseDto>(res: express.Response, data?: TDto | Array<TDto>) {
     if (!data) return res.sendStatus(HttpStatusCode.OK);
 
-    res.type(ContentType.APPLICATION_JSON);
-    return res.status(HttpStatusCode.OK).send(data);
+    return res.status(HttpStatusCode.OK).json(data);
   }
 
   public created<TDto extends BaseDto>(res: express.Response, data: TDto, message: string = 'Created') {
