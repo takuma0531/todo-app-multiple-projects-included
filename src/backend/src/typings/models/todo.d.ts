@@ -21,18 +21,4 @@ interface TodoDocument extends ITodo, Document {}
 
 interface TodoModel extends BaseModel<TodoCreateDto, TodoDocument>, Model<TodoDocument> {}
 
-interface ITodo {
-  title: string;
-  description: string;
-  items: Array<item>;
-  completed: boolean;
-  owner: string | UserDocument;
-  contributors: Array<string | UserDocument>;
-}
-
-interface item {
-  name: string;
-  completed: boolean;
-}
-
 export { ITodo, TodoDocument, TodoModel };
