@@ -3,6 +3,9 @@ import express from 'express';
 import { UserReadDto } from '../typings/dtos/user';
 import BaseController from './base/baseController';
 
+// mock data
+import { mockUser } from '../../mock/user';
+
 class UserController extends BaseController {
   constructor() {
     super();
@@ -14,14 +17,11 @@ class UserController extends BaseController {
   public async createOne(req: express.Request, res: express.Response) {
     try {
       const user = req.body;
-      console.log(user)
+      console.log(user);
 
-      const createUser = {
-        id: '1',
-        name: 'user 1' 
-      } as UserReadDto
+      const createUser: UserReadDto = mockUser;
 
-      return super.created(res, createUser);
+      return super.created<UserReadDto>(res, createUser);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -32,20 +32,7 @@ class UserController extends BaseController {
   // @access  Public
   public async getAll(_: express.Request, res: express.Response) {
     try {
-      const users = [
-        {
-          id: '1',
-          name: 'username1',
-        },
-        {
-          id: '1',
-          name: 'username1',
-        },
-        {
-          id: '1',
-          name: 'username1',
-        },
-      ] as Array<UserReadDto>;
+      const users: Array<UserReadDto> = [mockUser, mockUser, mockUser];
 
       return super.ok(res, users);
     } catch (error) {
@@ -59,10 +46,9 @@ class UserController extends BaseController {
   public async getOneById(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
-      const user = {
-        id: userId,
-        name: 'username',
-      } as UserReadDto;
+
+      const user: UserReadDto = mockUser;
+      user.id = userId;
 
       return super.ok<UserReadDto>(res, user);
     } catch (error) {
@@ -84,7 +70,6 @@ class UserController extends BaseController {
     }
   }
 
-
   // @route   PUT api/v1/users/:id
   // @desc    update user
   // @access  Public
@@ -92,12 +77,10 @@ class UserController extends BaseController {
     try {
       const userId = req.params.id;
 
-      const user = {
-        id: userId,
-        name: 'username (updated)',
-      } as UserReadDto;
+      const user: UserReadDto = mockUser;
+      user.id = userId;
 
-      return super.ok(res, user);
+      return super.ok<UserReadDto>(res, user);
     } catch (error) {
       return super.internalServerError(res, error);
     }

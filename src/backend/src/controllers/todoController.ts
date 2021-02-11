@@ -3,6 +3,9 @@ import BaseController from './base/baseController';
 
 import { TodoReadDto } from '../typings/dtos/todo';
 
+// mock data
+import { mockTodo } from '../../mock/todo';
+
 class TodoController extends BaseController {
   constructor() {
     super();
@@ -16,10 +19,7 @@ class TodoController extends BaseController {
       const todo = req.body;
       console.log(todo);
 
-      const createdTodo = {
-        id: '1',
-        title: 'todo 1',
-      } as TodoReadDto;
+      const createdTodo: TodoReadDto = mockTodo;
 
       return super.created(res, createdTodo);
     } catch (error) {
@@ -32,22 +32,9 @@ class TodoController extends BaseController {
   // @access  Public
   public async getAll(_: express.Request, res: express.Response) {
     try {
-      const todos = [
-        {
-          id: '1',
-          title: 'todo 1',
-        },
-        {
-          id: '2',
-          title: 'todo 2',
-        },
-        {
-          id: '3',
-          title: 'todo 3',
-        },
-      ] as Array<TodoReadDto>;
+      const todos: Array<TodoReadDto> = [mockTodo, mockTodo, mockTodo];
 
-      return super.ok(res, todos);
+      return super.ok<TodoReadDto>(res, todos);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -60,12 +47,10 @@ class TodoController extends BaseController {
     try {
       const todoId = req.params.id;
 
-      const todo = {
-        id: todoId,
-        title: 'todo 1',
-      } as TodoReadDto;
+      const todo: TodoReadDto = mockTodo;
+      todo.id = todoId;
 
-      return super.ok(res, todo);
+      return super.ok<TodoReadDto>(res, todo);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -91,12 +76,10 @@ class TodoController extends BaseController {
   public async updateOne(req: express.Request, res: express.Response) {
     const todoId = req.params.id;
 
-    const todo = {
-      id: todoId,
-      title: 'updated todo 1',
-    } as TodoReadDto;
+    const todo: TodoReadDto = mockTodo;
+    todo.id = todoId;
 
-    return super.ok(res, todo);
+    return super.ok<TodoReadDto>(res, todo);
   }
 }
 
