@@ -1,19 +1,29 @@
-import jwt from 'jsonwebtoken';
+import jwtClient from 'jsonwebtoken';
+import { ITokenService } from './interfaces';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'JWT_SECRET';
+class JwtTokenService implements ITokenService<jwtClient.SignOptions> {
+  private readonly _jwtSecret: string;
 
-const generateJwt = (payload: any, option: jwt.SignOptions) => {
-  const token = jwt.sign(payload, JWT_SECRET, option);
-  return token;
-};
+  private readonly _jwtClient: any;
 
-const checkToken = (token: string) => {
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    return decoded;
-  } catch (error) {
-    throw error;
+  constructor(jwtSecret: string, jwtClient: any) {
+    this._jwtSecret = jwtSecret;
+    this._jwtSecret = jwtClient;
   }
-};
 
-export default { generateJwt, checkToken };
+  public generateJwt(payload: any, options: jwtClient.SignOptions): string {
+    const token = this._jwtClient.sign(payload, this._jwtSecret, options);
+    return token;
+  }
+
+  public verifyToken(token: string): string | object {
+    try {
+      const decoded = this._jwtClient.verify(token, this._jwtSecret);
+      return decoded;
+    } catch (error) {
+      throw error;
+    }
+  }
+}
+
+export default JwtTokenService;
