@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { todoPlugin } from './todo.plugin';
 import { TodoDocument, TodoModel } from '../../../typings/models/todo';
 
 const todoSchema = new Schema({
@@ -35,6 +36,9 @@ const todoSchema = new Schema({
     },
   ],
 });
+
+// add plugin
+todoPlugin(todoSchema);
 
 const Todo = model<TodoDocument, TodoModel>('Todo', todoSchema);
 
