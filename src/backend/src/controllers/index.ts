@@ -1,2 +1,4 @@
-export * as userController from './userController';
-export * as  todoController from './todoController';
+import TodoController from './todoController';
+import UserController from './userController';
+
+export { UserController, TodoController };

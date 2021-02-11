@@ -1,87 +1,107 @@
-import { Request, Response } from 'express';
+import express from 'express';
 
-// @route   POST api/v1/users
-// @desc    create user
-// @access  Public
-export const createOne = async (req: Request, res: Response) => {
-  try {
-    const user = req.body;
+import { UserReadDto } from '../typings/dtos/user';
+import BaseController from './base/baseController';
 
-    const result = `created: ${user}`;
-
-    return res.status(200).json(result);
-  } catch (error) {
-    console.log(error);
-
-    return res.status(500);
+class UserController extends BaseController {
+  constructor() {
+    super();
   }
-};
 
-// @route   GET api/v1/users
-// @desc    get all users
-// @access  Public
-export const getAll = async (_: Request, res: Response) => {
-  try {
-    const users = ['user1', 'user2', 'user3'];
+  // @route   POST api/v1/users
+  // @desc    register user
+  // @access  Public
+  public async createOne(req: express.Request, res: express.Response) {
+    try {
+      const user = req.body;
+      console.log(user)
 
-    return res.status(200).json(users);
-  } catch (error) {
-    console.log(error);
+      const createUser = {
+        id: '1',
+        name: 'user 1' 
+      } as UserReadDto
 
-    return res.status(500).send(error.message);
+      return super.created(res, createUser);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
   }
-};
 
-// @route   GET api/v1/users/:id
-// @desc    get user by its id
-// @access  Public
-export const getOneById = async (req: Request, res: Response) => {
-  try {
-    const userId = req.params.id;
-    const user = `user: id ${userId}`;
+  // @route   GET api/v1/users
+  // @desc    get all users
+  // @access  Public
+  public async getAll(_: express.Request, res: express.Response) {
+    try {
+      const users = [
+        {
+          id: '1',
+          name: 'username1',
+        },
+        {
+          id: '1',
+          name: 'username1',
+        },
+        {
+          id: '1',
+          name: 'username1',
+        },
+      ] as Array<UserReadDto>;
 
-    return res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-
-    return res.status(500).send(error.message);
+      return super.ok(res, users);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
   }
-};
 
-// @route   DELETE api/v1/users/:id
-// @desc    delete user
-// @access  Public
-export const deleteOne = async (req: Request, res: Response) => {
-  try {
-    const userId = req.params.id;
-    const result = `deleted: ${userId}`;
+  // @route   GET api/v1/users/:id
+  // @desc    get user by its id
+  // @access  Public
+  public async getOneById(req: express.Request, res: express.Response) {
+    try {
+      const userId = req.params.id;
+      const user = {
+        id: userId,
+        name: 'username',
+      } as UserReadDto;
 
-    if (!result) return res.status(400).send('failed to delete');
-
-    return res.status(200).send(result);
-  } catch (error) {
-    console.log(error);
-
-    return res.status(500).send(error.message);
+      return super.ok<UserReadDto>(res, user);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
   }
-};
 
-// @route   PUT api/v1/users/:id
-// @desc    update user
-// @access  Public
-export const updateOne = async (req: Request, res: Response) => {
-  try {
-    const userId = req.params.id;
-    const newuser = req.body;
+  // @route   DELETE api/v1/users/:id
+  // @desc    delete user
+  // @access  Public
+  public async deleteOne(req: express.Request, res: express.Response) {
+    try {
+      const userId = req.params.id;
+      console.log(`delete user Id ${userId}`);
 
-    const result = `updated: ${userId} ${newuser}`;
-
-    if (!result) return res.status(400).send('failed to update');
-
-    return res.status(200).send(result);
-  } catch (error) {
-    console.log(error);
-
-    return res.status(500).send(error.message);
+      return super.noContent(res);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
   }
-};
+
+
+  // @route   PUT api/v1/users/:id
+  // @desc    update user
+  // @access  Public
+  public async updateOne(req: express.Request, res: express.Response) {
+    try {
+      const userId = req.params.id;
+
+      const user = {
+        id: userId,
+        name: 'username (updated)',
+      } as UserReadDto;
+
+      return super.ok(res, user);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
+  }
+}
+
+export default UserController;
