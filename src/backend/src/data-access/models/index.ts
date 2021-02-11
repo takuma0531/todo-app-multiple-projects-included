@@ -1,2 +1,2 @@
-export { todoModel, Todo, TodoDocument } from './todo';
-export { userModel, User, UserDocument } from './user';
+export { todoModel, TodoDocument } from './todo/todoSchema';
+export { userModel, UserDocument } from './user/userSchema';

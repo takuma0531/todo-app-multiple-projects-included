@@ -1,5 +1,5 @@
 import { Schema, model, Document } from 'mongoose';
-import { UserDocument } from './user';
+import Todo from './todo';
 
 const todoSchema = new Schema({
   title: {
@@ -36,23 +36,8 @@ const todoSchema = new Schema({
   ],
 });
 
-interface TodoDocument extends Document {}
-
-interface Todo {
-  _id?: string;
-  title: string;
-  description: string;
-  items: Array<item>;
-  completed: boolean;
-  owner: string | UserDocument;
-  contributors: Array<string | UserDocument>;
-}
-
-interface item {
-  name: string;
-  completed: boolean;
-}
+export interface TodoDocument extends Todo, Document {}
 
 const todoModel = model<TodoDocument>('Todo', todoSchema);
 
-export { TodoDocument, Todo, todoModel };
+export { todoModel };

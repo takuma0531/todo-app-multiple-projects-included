@@ -1,5 +1,5 @@
 import { Schema, model, Document } from 'mongoose';
-import { TodoDocument } from './todo';
+import User from './user';
 
 const userSchema = new Schema({
   username: {
@@ -14,11 +14,11 @@ const userSchema = new Schema({
   },
   phone: {
     type: String,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
-    unique: true
+    unique: true,
   },
   avatar: {
     type: String,
@@ -50,22 +50,8 @@ const userSchema = new Schema({
   ],
 });
 
-interface UserDocument extends Document {}
-
-interface User {
-  _id?: string;
-  username: string;
-  password: string;
-  phone: string;
-  email: string;
-  avatar?: string;
-  gender: string;
-  tags: Array<string>;
-  roles: Array<string>;
-  todos: Array<string | TodoDocument>;
-  friends: Array<string | UserDocument>;
-}
+interface UserDocument extends User, Document {}
 
 const userModel = model<UserDocument>('User', userSchema);
 
-export { userModel, User, UserDocument };
+export { userModel, UserDocument };
