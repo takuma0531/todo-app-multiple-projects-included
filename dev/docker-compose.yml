@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+    development-container:
+        build:
+            context: .
+        working_dir: /opt/developer/app
+        volumes:
+            - "..:/opt/developer/app"
+        ports:
+        - 5000:5000
+        command: >
+            /bin/sh /opt/developer/app/dev/init.sh
+    mongodb:
+      image: mongo:latest
+      restart: always
+      container_name: mongodb-container
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: mongo-user
+        MONGO_INITDB_ROOT_PASSWORD: mongo-password
+      ports:
+        - 27017:27017
+      volumes:
+        - ./mongodb:/data/db
