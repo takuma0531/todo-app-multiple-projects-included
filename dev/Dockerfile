@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14.15.4
 
 RUN addgroup --gid 1234 --system dev-container 
 RUN adduser --uid 1234 --system --home /opt/developer --shell "$(which ash)" --ingroup dev-container developer 
