@@ -29,14 +29,12 @@ This is a simple todo app built in typescript.
 
 ### Run the project in the dev container (not need a mongodb running)
 
-With docker running, please run the following commands:
-
 ```
 # install a vscode extension to work in a dev container
 $ code --install-extension ms-vscode-remote.remote-containers
 
-# reopen vscode and a popup appears saying "reopen in container"
-# you can also do "Remote-Containers: Reopen in Container"
+# With docker running, reopen vscode and a popup appears saying "reopen in container" and click it
+# or you can also do "Remote-Containers: Reopen in Container"
 # in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
 
 $ cd src/backend
