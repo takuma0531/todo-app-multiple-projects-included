@@ -33,7 +33,7 @@ This is a simple todo app built in typescript.
 # install a vscode extension to work in a dev container
 $ code --install-extension ms-vscode-remote.remote-containers
 
-# reopen vscode and a popup appeases saying "reopen in container"
+# reopen vscode and a popup appears saying "reopen in container"
 # you can also do "Remote-Containers: Reopen in Container"
 # in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
 
