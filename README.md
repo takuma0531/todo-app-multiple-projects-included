@@ -20,9 +20,7 @@ This is a simple todo app built in typescript.
 
  $ cd typescript-todo-app/src/backend
 
- $ yarn
-
- $ touch .env  # please refer to ".env.example"
+ $ yarn install --frozen-lockfile
 
  $ yarn dev
 ```
@@ -38,8 +36,6 @@ $ code --install-extension ms-vscode-remote.remote-containers
 # in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
 
 $ cd src/backend
-
-$ touch .env  # please refer to ".env.example"
 
 $ yarn dev
 ```
