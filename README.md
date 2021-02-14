@@ -27,14 +27,16 @@ $ cd typescript-todo-app
 ```
 # With docker running in your local machine
 $ code .
+
+# A popup appears saying "reopen in container" and click it
+# or you can also do "Remote-Containers: Reopen in Container"
+# in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
+# and wait until the dev container gets ready...
 ```
 
-A popup appears saying "reopen in container" and click it
-or you can also do "Remote-Containers: Reopen in Container"
-in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
 
-# wait until the dev container gets ready...
 
+```
 $ cd src/backend
 
 # start the project!
