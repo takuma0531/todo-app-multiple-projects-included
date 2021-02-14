@@ -1,6 +1,8 @@
 import jwtClient from 'jsonwebtoken';
 import { ITokenService } from './interfaces';
+import { initDotenv } from '../config';
 
+initDotenv();
 class JwtTokenService implements ITokenService<jwtClient.SignOptions> {
   private readonly _jwtSecret: string;
 
@@ -8,7 +10,7 @@ class JwtTokenService implements ITokenService<jwtClient.SignOptions> {
 
   constructor(jwtSecret: string, jwtClient: any) {
     this._jwtSecret = jwtSecret;
-    this._jwtSecret = jwtClient;
+    this._jwtClient = jwtClient;
   }
 
   public generateJwt(payload: any, options: jwtClient.SignOptions): string {
@@ -26,4 +28,4 @@ class JwtTokenService implements ITokenService<jwtClient.SignOptions> {
   }
 }
 
-export default JwtTokenService;
+export const jwtTokenService = new JwtTokenService(process.env.JWT_SECRET! ,jwtClient);

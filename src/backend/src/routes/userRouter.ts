@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { UserController } from '../controllers';
 import { UserService } from '../services'
+import { jwtTokenService } from '../services'
 import { UserRepository } from '../data-access/repositories';
 import { User } from '../data-access/models';
 
@@ -8,7 +9,7 @@ const router = Router();
 
 // TODO: delegate these instantiations to where dependencies are injected
 const userRepository = new UserRepository(User);
-const userService = new UserService(userRepository);
+const userService = new UserService(userRepository, jwtTokenService);
 const userController = new UserController(userService);
 
 router.get('/', (req: express.Request, res: express.Response) => userController.getAll(req, res));
