@@ -2,7 +2,7 @@ import { describe } from 'mocha';
 import { assert } from 'chai';
 import { connection } from 'mongoose';
 
-import { connectDB } from '../../src/data-access/connect-db';
+import { connectDB } from '../../src/data-access/connectDb';
 import { User } from '../../src/data-access/models';
 
 describe('User', () => {
