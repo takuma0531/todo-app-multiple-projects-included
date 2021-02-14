@@ -1,4 +1,4 @@
-import { BaseReadDto, BaseCreateDto } from './base';
+import { BaseReadDto, BaseCreateDto, BaseRequestDto, BaseResponseDto } from './base';
 import { IUser } from '../models/user';
 
 interface UserReadDto extends BaseReadDto {
@@ -23,4 +23,8 @@ interface UserCreateDto extends BaseCreateDto {
   roles: IUser['roles'];
 }
 
-export { UserReadDto, UserCreateDto };
+interface UserLoginRequestDto extends BaseRequestDto {}
+
+interface UserLoginResponseDto extends BaseResponseDto {}
+
+export { UserReadDto, UserCreateDto, UserLoginRequestDto, UserLoginResponseDto };

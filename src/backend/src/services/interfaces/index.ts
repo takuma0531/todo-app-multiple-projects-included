@@ -1,2 +1,3 @@
-export { ICryptoService } from './ICryptoService';
-export { ITokenService } from './ITokenService';
+export { ICryptoService } from './iCryptoService';
+export { ITokenService } from './iTokenService';
+export { IUserService } from './iUserService';

@@ -1,9 +1,11 @@
-import { BaseCreateDto } from '../../typings/dtos/base';
+import { Document } from 'mongoose';
 
-export interface BaseModel<TCreateDto extends BaseCreateDto, TDocument> {
+interface IHasCustomStaticMethod<TDocument extends Document, TCreateDto> {
   /**
-   * Object creation static method for strict typing because of 
-   * a constructor of the mongoose model that has no typing check.
+   * @summary
+   * mapper method for createDto
    */
-  new: (createDto: TCreateDto) => TDocument;
+  toDocument: (createDto: TCreateDto) => TDocument;
 }
+
+export { IHasCustomStaticMethod };

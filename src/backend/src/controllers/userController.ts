@@ -1,14 +1,19 @@
 import express from 'express';
 
-import { UserReadDto } from '../typings/dtos/user';
+import { UserCreateDto, UserReadDto } from '../typings/dtos/user';
 import BaseController from './base/baseController';
+import { IUserService } from 'src/services/interfaces';
 
 // mock data
 import { mockUser } from '../../mock/user';
 
 class UserController extends BaseController {
-  constructor() {
+  private readonly _userService: IUserService;
+
+  constructor(userService: IUserService) {
     super();
+
+    this._userService = userService;
   }
 
   // @route   POST api/v1/users
@@ -16,12 +21,10 @@ class UserController extends BaseController {
   // @access  Public
   public async createOne(req: express.Request, res: express.Response) {
     try {
-      const user = req.body;
-      console.log(user);
-
-      const createUser: UserReadDto = mockUser;
-
-      return super.created<UserReadDto>(res, createUser);
+      const userCreateDto: UserCreateDto = req.body;
+      // TODO: make a mapper util
+      const createdUserDoc = (await this._userService.createUser(userCreateDto)) as UserReadDto;
+      return super.created<UserReadDto>(res, createdUserDoc);
     } catch (error) {
       return super.internalServerError(res, error);
     }

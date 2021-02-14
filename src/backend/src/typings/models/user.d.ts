@@ -1,5 +1,5 @@
 import { Model, Document } from 'mongoose';
-import { BaseModel } from './base';
+import { IHasCustomStaticMethod } from './base';
 import { TodoDocument } from './todo';
 import { UserCreateDto } from '../dtos/user';
 
@@ -18,6 +18,10 @@ interface IUser {
 
 interface UserDocument extends IUser, Document {}
 
-interface UserModel extends BaseModel<UserCreateDto, UserDocument>, Model<UserDocument> {}
+interface UserModel extends Model<UserDocument>, IHasCustomUserStaticMethod {}
+
+interface IHasCustomUserStaticMethod extends IHasCustomStaticMethod<UserDocument, UserCreateDto> {
+  // custom static methods for UserModel:
+}
 
 export { IUser, UserDocument, UserModel };

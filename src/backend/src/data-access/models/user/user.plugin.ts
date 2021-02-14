@@ -1,12 +1,11 @@
 import { Schema, HookNextFunction } from 'mongoose';
 
-import { BcryptService } from '../../../services';
+import { bcryptService } from '../../../services';
 import { UserCreateDto } from '../../../typings/dtos/user';
 
-const bcryptService = new BcryptService();
 
 const userPlugin = (userSchema: Schema<any>) => {
-  userSchema.static('new', function (userCreateDto: UserCreateDto) {
+  userSchema.static('toDocument', function (userCreateDto: UserCreateDto) {
     return new this(userCreateDto);
   });
 

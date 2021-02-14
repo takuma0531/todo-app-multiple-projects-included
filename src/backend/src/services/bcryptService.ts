@@ -24,4 +24,4 @@ class BcryptService implements ICryptoService {
   }
 }
 
-export default BcryptService;
+export const bcryptService = new BcryptService();

@@ -1,4 +1,5 @@
-import BcryptService from './bcrypt.service';
-import JwtTokenService from './token.service';
+import UserService from './userService';
+import { bcryptService } from './bcryptService';
+import JwtTokenService from './tokenService';
 
-export { BcryptService, JwtTokenService };
+export { UserService, bcryptService, JwtTokenService };

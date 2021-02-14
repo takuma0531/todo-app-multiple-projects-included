@@ -7,7 +7,7 @@
     "start": "export NODE_ENV=production && node dist/index.js",
     "build": "tsc",
     "dev": "export NODE_ENV=development && nodemon --exec ts-node src/index.ts",
-    "test": "mocha --require ts-node/register --watch-extensions ts 'test/**/*.ts'"
+    "test": "export NODE_ENV=development && mocha --require ts-node/register --watch-extensions ts 'test/**/*.ts'"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

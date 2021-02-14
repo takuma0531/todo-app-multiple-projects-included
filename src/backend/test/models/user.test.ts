@@ -16,7 +16,7 @@ describe('User', () => {
   });
 
   it('should save a new user in the db', async () => {
-    const newUser = User.new({
+    const newUser = User.toDocument({
       username: 'testuser',
       email: 'testuser@example.com',
       password: 'testuser@password',
@@ -33,7 +33,7 @@ describe('User', () => {
   });
 
   it('should get one saved user from the db', async () => {
-    const newUser = User.new({
+    const newUser = User.toDocument({
       username: 'testuser',
       email: 'testuser@example.com',
       password: 'testuser@password',
@@ -55,7 +55,7 @@ describe('User', () => {
   });
 
   it('should delete one user in the db by the user id', async () => {
-    const newUser = User.new({
+    const newUser = User.toDocument({
       username: 'testuser',
       email: 'testuser@example.com',
       password: 'testuser@password',
@@ -75,7 +75,7 @@ describe('User', () => {
   });
 
   it('should update "username" of one user in the db by the user id', async () => {
-    const newUser = User.new({
+    const newUser = User.toDocument({
       username: 'testuser',
       email: 'testuser@example.com',
       password: 'testuser@password',

@@ -1,7 +1,13 @@
-interface BaseReadDto {
+interface BaseDto {}
+
+interface BaseReadDto extends BaseDto {
   id: string;
 }
 
-interface BaseCreateDto {}
+interface BaseCreateDto extends BaseDto {}
 
-export { BaseReadDto, BaseCreateDto };
+interface BaseRequestDto extends BaseDto {}
+
+interface BaseResponseDto extends BaseDto {}
+
+export { BaseDto, BaseReadDto, BaseCreateDto, BaseRequestDto, BaseResponseDto };

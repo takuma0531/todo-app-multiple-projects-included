@@ -22,7 +22,7 @@ describe('Todo', () => {
     if (todoLength > 0) await connection.collections.todos.drop();
 
     //   make an owner
-    const newUser = User.new({
+    const newUser = User.toDocument({
       username: 'testuser',
       email: 'testuser@example.com',
       password: 'testuser@password',
@@ -36,7 +36,7 @@ describe('Todo', () => {
   });
 
   it('should save a new todo in the db', async () => {
-    const newTodo = Todo.new({
+    const newTodo = Todo.toDocument({
       title: 'todo 1',
       description: 'this is a todo 1',
       items: [
@@ -59,7 +59,7 @@ describe('Todo', () => {
   });
 
   it('should get one saved todo from the db', async () => {
-    const newTodo = Todo.new({
+    const newTodo = Todo.toDocument({
       title: 'todo 1',
       description: 'this is a todo 1',
       items: [
@@ -88,7 +88,7 @@ describe('Todo', () => {
   });
 
   it('should delete one todo in the db by the todo id', async () => {
-    const newTodo = Todo.new({
+    const newTodo = Todo.toDocument({
       title: 'todo 1',
       description: 'this is a todo 1',
       items: [
@@ -115,7 +115,7 @@ describe('Todo', () => {
   });
 
   it('should update "title" of one todo in the db by the todo id', async () => {
-    const newTodo = Todo.new({
+    const newTodo = Todo.toDocument({
       title: 'todo 1',
       description: 'this is a todo 1',
       items: [
