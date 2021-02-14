@@ -1,6 +1,6 @@
 import { Model, Document } from 'mongoose';
-import { TodoCreateDto } from '../dtos/todo';
-import { IHasCustomStaticMethod } from './base';
+import { TodoCreateDto, TodoReadDto } from '../dtos/todo';
+import { IHasCustomMethod ,IHasCustomStaticMethod } from './base';
 import { UserDocument } from './user';
 
 interface ITodo {
@@ -17,10 +17,14 @@ interface item {
   completed: boolean;
 }
 
-interface TodoDocument extends ITodo, Document {}
+interface TodoDocument extends ITodo, Document, IHasCustomUserMethod {}
+
+interface IHasCustomUserMethod extends IHasCustomMethod<TodoReadDto> {
+  // custom methods for TodoDocument
+}
+
 
 interface TodoModel extends Model<TodoDocument>, IHasCustomTodoStaticMethod {}
-
 interface IHasCustomTodoStaticMethod extends IHasCustomStaticMethod<TodoDocument, TodoCreateDto> {
   // custom static methods for TodoModel
 }

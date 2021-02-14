@@ -3,8 +3,8 @@ import { IUser } from '../models/user';
 
 interface UserReadDto extends BaseReadDto {
   username: IUser['username'];
-  phone: IUser['phone'];
   email: IUser['email'];
+  phone: IUser['phone'];
   avatar?: IUser['avatar'];
   gender?: IUser['gender'];
   tags: IUser['tags'];
@@ -15,9 +15,9 @@ interface UserReadDto extends BaseReadDto {
 
 interface UserCreateDto extends BaseCreateDto {
   username: IUser['username'];
+  email: IUser['email'];
   password: IUser['password'];
   phone: IUser['phone'];
-  email: IUser['email'];
   avatar?: IUser['avatar'];
   gender?: IUser['gender'];
   roles: IUser['roles'];

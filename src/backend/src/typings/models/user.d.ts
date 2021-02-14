@@ -1,7 +1,7 @@
 import { Model, Document } from 'mongoose';
-import { IHasCustomStaticMethod } from './base';
+import { IHasCustomMethod, IHasCustomStaticMethod } from './base';
 import { TodoDocument } from './todo';
-import { UserCreateDto } from '../dtos/user';
+import { UserCreateDto, UserReadDto } from '../dtos/user';
 
 interface IUser {
   username: string;
@@ -16,12 +16,16 @@ interface IUser {
   friends: Array<string | UserDocument>;
 }
 
-interface UserDocument extends IUser, Document {}
+interface UserDocument extends IUser, Document, IHasCustomUserMethod {}
+
+interface IHasCustomUserMethod extends IHasCustomMethod<UserReadDto> {
+  // custom methods for UserDocument:
+}
 
 interface UserModel extends Model<UserDocument>, IHasCustomUserStaticMethod {}
 
 interface IHasCustomUserStaticMethod extends IHasCustomStaticMethod<UserDocument, UserCreateDto> {
-  // custom static methods for UserModel:
+  // custom static methods for UserModel
 }
 
 export { IUser, UserDocument, UserModel };

@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { userPlugin } from './user.plugin';
 import { UserDocument, UserModel } from '../../../typings/models/user';
 
-const userSchema = new Schema(
+const userSchema = new Schema<UserDocument>(
   {
     username: {
       type: String,

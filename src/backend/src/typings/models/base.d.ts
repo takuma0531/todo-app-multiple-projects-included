@@ -1,11 +1,20 @@
 import { Document } from 'mongoose';
+import { BaseCreateDto, BaseReadDto } from '../dtos/base';
 
-interface IHasCustomStaticMethod<TDocument extends Document, TCreateDto> {
+interface IHasCustomMethod<TReadDto extends BaseReadDto> {
   /**
    * @summary
-   * mapper method for createDto
+   * mapper method to convert TDocument into TReadDto
+   */
+  toReadDto: () => TReadDto
+}
+
+interface IHasCustomStaticMethod<TDocument extends Document, TCreateDto extends BaseCreateDto> {
+  /**
+   * @summary
+   * mapper method to convert TCreateDto into TDocument
    */
   toDocument: (createDto: TCreateDto) => TDocument;
 }
 
-export { IHasCustomStaticMethod };
+export { IHasCustomMethod, IHasCustomStaticMethod };

@@ -22,9 +22,8 @@ class UserController extends BaseController {
   public async createOne(req: express.Request, res: express.Response) {
     try {
       const userCreateDto: UserCreateDto = req.body;
-      // TODO: make a mapper util
-      const createdUserDoc = (await this._userService.createUser(userCreateDto)) as UserReadDto;
-      return super.created<UserReadDto>(res, createdUserDoc);
+      const createdUser = (await this._userService.createUser(userCreateDto)).toReadDto();
+      return super.created<UserReadDto>(res, createdUser);
     } catch (error) {
       return super.internalServerError(res, error);
     }

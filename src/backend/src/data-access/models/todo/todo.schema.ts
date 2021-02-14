@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { todoPlugin } from './todo.plugin';
 import { TodoDocument, TodoModel } from '../../../typings/models/todo';
 
-const todoSchema = new Schema(
+const todoSchema = new Schema<TodoDocument>(
   {
     title: {
       type: String,
