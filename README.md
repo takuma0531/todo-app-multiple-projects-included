@@ -18,17 +18,20 @@ This is a simple todo app built in typescript.
 ```
 # install a vscode extension to work in a dev container
 $ code --install-extension ms-vscode-remote.remote-containers
-
+```
+```
 $ git clone https://github.com/ryuichi24/typescript-todo-app
 
 $ cd typescript-todo-app
-
+```
+```
 # With docker running in your local machine
 $ code .
+```
 
-# a popup appears saying "reopen in container" and click it
-# or you can also do "Remote-Containers: Reopen in Container"
-# in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
+A popup appears saying "reopen in container" and click it
+or you can also do "Remote-Containers: Reopen in Container"
+in Command pallette (Shift + Cmd + p or Ctrl + Shift + p)
 
 # wait until the dev container gets ready...
 
