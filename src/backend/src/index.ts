@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import { config } from 'dotenv';
 
 import Server from './server';
 import { connectDB } from './data-access/connect-db';
 import { todoRouter, userRouter } from './routes';
+import { initDotenv } from './config';
 
 // enable dotenv
-config();
+initDotenv();
 
 // connect db
 connectDB();

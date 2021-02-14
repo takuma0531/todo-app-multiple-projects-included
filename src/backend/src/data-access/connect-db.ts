@@ -1,7 +1,8 @@
 import { connect } from 'mongoose';
-import { config } from 'dotenv';
+import { initDotenv } from '../config';
 
-config();
+// enable dotenv
+initDotenv();
 
 const connectionString =
   process.env.DB_CONNECTION_STRING || 'DB_CONNECTION_STRING';
