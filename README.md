@@ -13,18 +13,6 @@ This is a simple todo app built in typescript.
 
 ## How to run the project
 
-### Run the project locally (need a mongodb running)
-
-```
- $ git clone https://github.com/ryuichi24/typescript-todo-app
-
- $ cd typescript-todo-app/src/backend
-
- $ yarn install --frozen-lockfile
-
- $ yarn dev
-```
-
 ### Run the project in the dev container (not need a mongodb running)
 
 ```
@@ -38,4 +26,16 @@ $ code --install-extension ms-vscode-remote.remote-containers
 $ cd src/backend
 
 $ yarn dev
+```
+
+### Run the project locally (need a mongodb running)
+
+```
+ $ git clone https://github.com/ryuichi24/typescript-todo-app
+
+ $ cd typescript-todo-app/src/backend
+
+ $ yarn install --frozen-lockfile
+
+ $ yarn dev
 ```
