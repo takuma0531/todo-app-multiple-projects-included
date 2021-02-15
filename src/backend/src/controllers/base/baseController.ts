@@ -13,7 +13,8 @@ abstract class BaseController {
   }
 
   public created<TReadDto extends BaseReadDto>(res: express.Response, data: TReadDto) {
-    const successResponse: SuccessResponse = { data };
+    const successResponse: SuccessResponse = { data }
+    // TODO: add host and route to location header
     return res.status(HttpStatusCode.CREATED).location(`${data.id}`).json(successResponse);
   }
 
