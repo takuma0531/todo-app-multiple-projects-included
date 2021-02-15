@@ -39,6 +39,8 @@ const userPlugin = (userSchema: Schema<UserDocument>) => {
       }
     }
   });
+
+  // TODO: add hook to do cascade delete for todos owned by the deleted user
 };
 
 export { userPlugin };
