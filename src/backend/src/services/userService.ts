@@ -1,4 +1,3 @@
-import jwtClient from 'jsonwebtoken';
 import { JwtConstants } from '../config/constants';
 import { ITokenService, IUserService } from './interfaces';
 import { IUserRepository } from '../data-access/repositories/interfaces';
@@ -9,9 +8,9 @@ import { AuthorizeResponse } from '../typings/dtos/response';
 class UserService implements IUserService {
   private readonly _userRepository: IUserRepository;
 
-  private readonly _tokenService: ITokenService<jwtClient.SignOptions>;
+  private readonly _tokenService: ITokenService;
 
-  constructor(userRepository: IUserRepository, tokenService: ITokenService<jwtClient.SignOptions>) {
+  constructor(userRepository: IUserRepository, tokenService: ITokenService) {
     this._userRepository = userRepository;
     this._tokenService = tokenService;
   }
@@ -26,13 +25,7 @@ class UserService implements IUserService {
         email: createdUser.email,
         role: createdUser.roles
       };
-      const jwtOptions: jwtClient.SignOptions = {
-        algorithm: JwtConstants.JWT_ALGORITHM,
-        expiresIn: JwtConstants.JWT_EXPIRE_IN,
-        issuer: JwtConstants.JWT_ISSUER,
-        audience: JwtConstants.JWT_AUDIENCE
-      };
-      const token = this._tokenService.generateJwt(payload, jwtOptions);
+      const token = this._tokenService.generateJwt(payload);
       const auth: AuthorizeResponse = {
         token,
         expireIn: JwtConstants.JWT_EXPIRE_IN,

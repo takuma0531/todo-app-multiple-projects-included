@@ -1,5 +1,5 @@
-interface ITokenService<TOptions> {
-  generateJwt(payload: any, options: TOptions): string;
+interface ITokenService {
+  generateJwt(payload: any): string;
   verifyToken(token: string): string | object;
 }
 
