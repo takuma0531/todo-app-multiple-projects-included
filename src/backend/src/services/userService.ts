@@ -1,9 +1,9 @@
 import { JwtConstants } from '../config/constants';
 import { ITokenService, IUserService } from './interfaces';
 import { IUserRepository } from '../data-access/repositories/interfaces';
-import { UserCreateDto, UserLoginRequestDto, UserLoginResponseDto, UserReadDto } from '../typings/dtos/user';
+import { UserCreateDto, UserReadDto } from '../typings/dtos/user';
 import { User } from '../data-access/models';
-import { AuthorizeResponse } from '../typings/dtos/response';
+import { AuthorizeResult } from '../typings/dtos/user';
 
 class UserService implements IUserService {
   private readonly _userRepository: IUserRepository;
@@ -26,12 +26,12 @@ class UserService implements IUserService {
         role: createdUser.roles
       };
       const token = this._tokenService.generateJwt(payload);
-      const auth: AuthorizeResponse = {
+      const auth: AuthorizeResult = {
         token,
         expireIn: JwtConstants.JWT_EXPIRE_IN,
         isAuthorized: true
       }
-      createdUser.auth = auth;
+      createdUser.authResult = auth;
       return createdUser;
     } catch (error) {
       throw error;
@@ -39,7 +39,7 @@ class UserService implements IUserService {
   }
 
   // @ts-ignore
-  loginUser(loginRequest: UserLoginRequestDto): Promise<UserLoginResponseDto> {
+  loginUser(loginRequest: any): Promise<any> {
     throw new Error('Method not implemented.');
   }
 }

@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import { ServerParts, Route } from './typings/server';
+import { ServerParts, Route } from './typings/common';
 
 class Server {
   private app: Express;

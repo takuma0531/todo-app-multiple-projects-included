@@ -1,5 +1,4 @@
-import { BaseReadDto, BaseCreateDto, BaseRequestDto, BaseResponseDto } from './base';
-import { AuthorizeResponse } from './response';
+import { BaseReadDto, BaseCreateDto } from './base';
 import { IUser } from '../models/user';
 
 interface UserReadDto extends BaseReadDto {
@@ -12,7 +11,7 @@ interface UserReadDto extends BaseReadDto {
   roles: IUser['roles'];
   todos: IUser['todos'];
   friends: IUser['friends'];
-  auth?: AuthorizeResponse;
+  authResult?: AuthorizeResult;
 }
 
 interface UserCreateDto extends BaseCreateDto {
@@ -25,8 +24,11 @@ interface UserCreateDto extends BaseCreateDto {
   roles: IUser['roles'];
 }
 
-interface UserLoginRequestDto extends BaseRequestDto {}
+interface AuthorizeResult {
+  token: string;
+  expireIn: any;
+  isAuthorized: boolean;
+}
 
-interface UserLoginResponseDto extends BaseResponseDto {}
 
-export { UserReadDto, UserCreateDto, UserLoginRequestDto, UserLoginResponseDto };
+export { UserReadDto, UserCreateDto, AuthorizeResult };
