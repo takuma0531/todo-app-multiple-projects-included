@@ -8,6 +8,9 @@ class JwtConstants {
   public static readonly JWT_ALGORITHM = 'HS256';
   public static readonly JWT_ISSUER = process.env.JWT_ISSUER;
   public static readonly JWT_AUDIENCE = process.env.JWT_AUDIENCE;
+  public static readonly JWT_ENCODING = 'UTF8';
+  public static readonly JWT_ID = '';
+  public static readonly JWT_SUBJECT = '';
 }
 
 export default JwtConstants;

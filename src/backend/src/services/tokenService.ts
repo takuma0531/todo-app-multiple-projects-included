@@ -34,10 +34,13 @@ class JwtTokenService implements ITokenService {
 }
 
 const jwtOptions: jwtClient.SignOptions = {
+  jwtid: JwtConstants.JWT_ID,
   algorithm: JwtConstants.JWT_ALGORITHM,
   expiresIn: JwtConstants.JWT_EXPIRE_IN,
+  subject: JwtConstants.JWT_SUBJECT,
   issuer: JwtConstants.JWT_ISSUER,
   audience: JwtConstants.JWT_AUDIENCE,
+  encoding: JwtConstants.JWT_ENCODING,
 };
 
 export const jwtTokenService = new JwtTokenService(process.env.JWT_SECRET!, jwtClient, jwtOptions);
