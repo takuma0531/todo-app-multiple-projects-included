@@ -34,7 +34,7 @@ class TodoController extends BaseController {
     try {
       const todos: Array<TodoReadDto> = [mockTodo, mockTodo, mockTodo];
 
-      return super.ok<TodoReadDto>(res, todos);
+      return super.ok(res, todos);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -50,7 +50,7 @@ class TodoController extends BaseController {
       const todo: TodoReadDto = mockTodo;
       todo.id = todoId;
 
-      return super.ok<TodoReadDto>(res, todo);
+      return super.ok(res, todo);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -79,7 +79,7 @@ class TodoController extends BaseController {
     const todo: TodoReadDto = mockTodo;
     todo.id = todoId;
 
-    return super.ok<TodoReadDto>(res, todo);
+    return super.ok(res, todo);
   }
 }
 

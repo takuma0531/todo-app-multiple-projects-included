@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { UserCreateDto, UserReadDto } from '../typings/dtos/user';
+import { LoginRequest, UserCreateDto, UserReadDto } from '../typings/dtos/user';
 import BaseController from './base/baseController';
 import { IUserService } from 'src/services/interfaces';
 
@@ -22,7 +22,7 @@ class UserController extends BaseController {
   public async createOne(req: express.Request, res: express.Response) {
     try {
       const userCreateDto: UserCreateDto = req.body;
-      const createdUser = (await this._userService.createUser(userCreateDto));
+      const createdUser = await this._userService.createUser(userCreateDto);
       return super.created<UserReadDto>(res, createdUser);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -52,7 +52,7 @@ class UserController extends BaseController {
       const user: UserReadDto = mockUser;
       user.id = userId;
 
-      return super.ok<UserReadDto>(res, user);
+      return super.ok(res, user);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -82,7 +82,24 @@ class UserController extends BaseController {
       const user: UserReadDto = mockUser;
       user.id = userId;
 
-      return super.ok<UserReadDto>(res, user);
+      return super.ok(res, user);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
+  }
+
+  // @route   PUT api/v1/users/login
+  // @desc    login user
+  // @access  Public
+  public async loginUser(req: express.Request, res: express.Response) {
+    try {
+      const loginRequest: LoginRequest = req.body;
+
+      const authorizeResult = await this._userService.loginUser(loginRequest);
+
+      if(!authorizeResult.isAuthorized) return super.unauthorized(res);
+
+      return super.ok(res, authorizeResult);
     } catch (error) {
       return super.internalServerError(res, error);
     }

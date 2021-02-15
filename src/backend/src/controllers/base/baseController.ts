@@ -5,7 +5,7 @@ import { BaseReadDto } from '../../typings/dtos/base';
 import { SuccessResponse, ErrorResponse } from '../../typings/common';
 
 abstract class BaseController {
-  public ok<TDto extends BaseReadDto>(res: express.Response, data?: TDto | Array<TDto>) {
+  public ok(res: express.Response, data?: any | Array<any>) {
     if (!data) return res.sendStatus(HttpStatusCode.OK);
 
     const successResponse: SuccessResponse = { data };

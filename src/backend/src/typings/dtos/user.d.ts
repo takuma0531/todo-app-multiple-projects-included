@@ -25,10 +25,15 @@ interface UserCreateDto extends BaseCreateDto {
 }
 
 interface AuthorizeResult {
-  token: string;
-  expireIn: any;
+  token?: string | null;
+  expireIn?: any;
   isAuthorized: boolean;
 }
 
+interface LoginRequest {
+  email: IUser['email'];
+  password: IUser['password'];
+}
 
-export { UserReadDto, UserCreateDto, AuthorizeResult };
+
+export { UserReadDto, UserCreateDto, AuthorizeResult, LoginRequest };
