@@ -2,36 +2,38 @@ import express, { Express, Request, Response } from 'express';
 import { ServerParts, Route } from './typings/common';
 
 class Server {
-  private app: Express;
-  private port: string;
+  private readonly _app: Express;
+  private readonly _port: string;
+  private readonly _host: string;
 
   constructor(serverParts: ServerParts) {
-    this.app = express();
-    this.port = serverParts.port;
+    this._app = express();
+    this._host = serverParts.host;
+    this._port = serverParts.port;
     this.setMiddlewares(serverParts.middlewares);
     this.setRoutes(serverParts.routes);
   }
 
   public init() {
     // TODO: remove it later
-    this.app.get('/', (_: Request, res: Response) =>
+    this._app.get('/', (_: Request, res: Response) =>
       res.status(200).send('API is running'),
     );
 
-    this.app.listen(this.port, () =>
-      console.log(`Server is running on http://localhost:${this.port}`),
+    this._app.listen(this._port, () =>
+      console.log(`Server is running on ${this._host}:${this._port}`),
     );
   }
 
   private setMiddlewares(middlewares: Array<any>) {
     middlewares.forEach((middleware) => {
-      this.app.use(middleware);
+      this._app.use(middleware);
     });
   }
 
   private setRoutes(routes: Array<any>) {
     routes.forEach((route: Route) => {
-      this.app.use(route.baseRoute, route.router);
+      this._app.use(route.baseRoute, route.router);
     });
   }
 }

@@ -12,9 +12,11 @@ initDotenv();
 // connect db
 connectDB();
 
+const HOST = process.env.HOST || 'http://localhost';
 const PORT = process.env.PORT || '5000';
 
 const server = new Server({
+  host: HOST,
   port: PORT,
   middlewares: [express.json(), cors()],
   routes: [

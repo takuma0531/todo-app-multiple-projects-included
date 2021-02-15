@@ -28,7 +28,7 @@ const userPlugin = (userSchema: Schema<UserDocument>) => {
   })
 
   userSchema.pre('save', async function (next: HookNextFunction) {
-    if (this.isNew) {
+    if (this.isNew && this.isModified('password')) {
       try {
         const hash = await bcryptService.encrypt(this.password);
         this.password = hash;
