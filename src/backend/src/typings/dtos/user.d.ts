@@ -1,4 +1,4 @@
-import { BaseReadDto, BaseCreateDto } from './base';
+import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from './base';
 import { IUser } from '../models/user';
 
 interface UserReadDto extends BaseReadDto {
@@ -24,6 +24,13 @@ interface UserCreateDto extends BaseCreateDto {
   roles: IUser['roles'];
 }
 
+interface UserUpdateDto extends BaseUpdateDto {
+  username: IUser['username'];
+  email: IUser['email'];
+  phone: IUser['phone'];
+  avatar: IUser['avatar'];
+}
+
 interface AuthorizeResult {
   token?: string | null;
   expireIn?: any;
@@ -36,4 +43,4 @@ interface LoginRequest {
 }
 
 
-export { UserReadDto, UserCreateDto, AuthorizeResult, LoginRequest };
+export { UserReadDto, UserCreateDto, UserUpdateDto, AuthorizeResult, LoginRequest };

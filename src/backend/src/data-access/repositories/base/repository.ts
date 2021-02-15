@@ -8,7 +8,7 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
     this._model = model;
   }
 
-  async addOne(document: TDocument): Promise<TDocument> {
+  public async addOne(document: TDocument): Promise<TDocument> {
     try {
       const createdDocument = await this._model.create(document);
       return createdDocument;
@@ -17,7 +17,7 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
     }
   }
 
-  async getAll(): Promise<Array<TDocument>> {
+  public async getAll(): Promise<Array<TDocument>> {
     try {
       const documents = await this._model.find();
       return documents;
@@ -26,7 +26,7 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
     }
   }
 
-  async getOneById(id: string): Promise<TDocument> {
+  public async getOneById(id: string): Promise<TDocument> {
     try {
       const document = await this._model.findById(id);
       // TODO: add different validation
@@ -37,9 +37,17 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
     }
   }
 
-  async removeOne(id: string): Promise<void> {
+  public async removeOneById(id: string): Promise<void> {
     try {
       await this._model.findByIdAndRemove(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async updateOneById(id: string, data: any): Promise<any> {
+    try {
+      await this._model.findByIdAndUpdate(id, data);
     } catch (error) {
       throw error;
     }

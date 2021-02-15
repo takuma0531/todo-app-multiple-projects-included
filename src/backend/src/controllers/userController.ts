@@ -1,11 +1,9 @@
 import express from 'express';
 
-import { LoginRequest, UserCreateDto, UserReadDto } from '../typings/dtos/user';
+import { LoginRequest, UserCreateDto, UserReadDto, UserUpdateDto } from '../typings/dtos/user';
 import BaseController from './base/baseController';
 import { IUserService } from 'src/services/interfaces';
 
-// mock data
-import { mockUser } from '../../mock/user';
 
 class UserController extends BaseController {
   private readonly _userService: IUserService;
@@ -34,8 +32,7 @@ class UserController extends BaseController {
   // @access  Public
   public async getAll(_: express.Request, res: express.Response) {
     try {
-      const users: Array<UserReadDto> = [mockUser, mockUser, mockUser];
-
+      const users: Array<UserReadDto> = await this._userService.getUsers();
       return super.ok(res, users);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -48,10 +45,7 @@ class UserController extends BaseController {
   public async getOneById(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
-
-      const user: UserReadDto = mockUser;
-      user.id = userId;
-
+      const user: UserReadDto = await this._userService.getUserById(userId);
       return super.ok(res, user);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -64,8 +58,7 @@ class UserController extends BaseController {
   public async deleteOne(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
-      console.log(`delete user Id ${userId}`);
-
+      await this._userService.deleteUser(userId);
       return super.noContent(res);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -78,11 +71,9 @@ class UserController extends BaseController {
   public async updateOne(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
-
-      const user: UserReadDto = mockUser;
-      user.id = userId;
-
-      return super.ok(res, user);
+      const userUpdateDto: UserUpdateDto = req.body;
+      await this._userService.updateUser(userId, userUpdateDto);
+      return super.noContent(res);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -97,7 +88,7 @@ class UserController extends BaseController {
 
       const authorizeResult = await this._userService.loginUser(loginRequest);
 
-      if(!authorizeResult.isAuthorized) return super.unauthorized(res);
+      if (!authorizeResult.isAuthorized) return super.unauthorized(res);
 
       return super.ok(res, authorizeResult);
     } catch (error) {

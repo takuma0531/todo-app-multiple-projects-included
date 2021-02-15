@@ -1,7 +1,7 @@
 import { JwtConstants } from '../config/constants';
 import { ICryptoService, ITokenService, IUserService } from './interfaces';
 import { IUserRepository } from '../data-access/repositories/interfaces';
-import { UserCreateDto, UserReadDto, LoginRequest } from '../typings/dtos/user';
+import { UserCreateDto, UserReadDto, UserUpdateDto, LoginRequest } from '../typings/dtos/user';
 import { User } from '../data-access/models';
 import { AuthorizeResult } from '../typings/dtos/user';
 import { UserDocument } from '../typings/models/user';
@@ -63,6 +63,41 @@ class UserService implements IUserService {
       authorizeResult.expireIn = JwtConstants.JWT_EXPIRE_IN;
 
       return authorizeResult;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getUsers() {
+    try {
+      const users = await this._userRepository.getAll();
+      const userReadDtos = users.map((u) => u.toReadDto());
+      return userReadDtos;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async getUserById(id: string): Promise<UserReadDto> {
+    try {
+      const user = await this._userRepository.getOneById(id);
+      return user.toReadDto();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async updateUser(id: string, data: UserUpdateDto): Promise<void> {
+    try {
+      await this._userRepository.updateOneById(id, data);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async deleteUser(id: string): Promise<void> {
+    try {
+      await this._userRepository.removeOneById(id);
     } catch (error) {
       throw error;
     }

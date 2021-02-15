@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
 interface IRepository<TDocument extends Document> {
   addOne(document: TDocument): Promise<TDocument>;
@@ -7,7 +7,9 @@ interface IRepository<TDocument extends Document> {
 
   getOneById(id: string): Promise<TDocument>;
 
-  removeOne(id: string): Promise<void>;
+  removeOneById(id: string): Promise<void>;
+
+  updateOneById(id: string, data: any): Promise<any>;
 }
 
 export { IRepository };

@@ -4,4 +4,6 @@ interface BaseReadDto {
 
 interface BaseCreateDto {}
 
-export { BaseReadDto, BaseCreateDto };
+interface BaseUpdateDto {}
+
+export { BaseReadDto, BaseCreateDto, BaseUpdateDto };
