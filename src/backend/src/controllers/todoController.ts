@@ -1,14 +1,16 @@
 import express from 'express';
 import BaseController from './base/baseController';
+import { ITodoService } from '../services/interfaces';
 
-import { TodoReadDto } from '../typings/dtos/todo';
-
-// mock data
-import { mockTodo } from '../../mock/todo';
+import { TodoReadDto, TodoCreateDto } from '../typings/dtos/todo';
 
 class TodoController extends BaseController {
-  constructor() {
+  private readonly _todoService: ITodoService;
+
+  constructor(todoService: ITodoService) {
     super();
+
+    this._todoService = todoService;
   }
 
   // @route   POST api/v1/todos
@@ -16,25 +18,28 @@ class TodoController extends BaseController {
   // @access  Public
   public async createOne(req: express.Request, res: express.Response) {
     try {
-      const todo = req.body;
-      console.log(todo);
-
-      const createdTodo: TodoReadDto = mockTodo;
-
+      const todoCreateDto: TodoCreateDto = req.body;
+      const createdTodo = await this._todoService.createTodo(todoCreateDto);
       return super.created(res, createdTodo);
     } catch (error) {
       return super.internalServerError(res, error);
     }
   }
 
-  // @route   GET api/v1/todos
-  // @desc    get all todos
+  // @route   GET api/v1/todos?owner=id
+  // @desc    get todos and can be filtered by owner id
   // @access  Public
-  public async getAll(_: express.Request, res: express.Response) {
+  public async getTodos(req: express.Request, res: express.Response) {
     try {
-      const todos: Array<TodoReadDto> = [mockTodo, mockTodo, mockTodo];
+      const ownerId = req.query.owner as string;
 
-      return super.ok(res, todos);
+      if (!ownerId) {
+        const todoReadDtos = await this._todoService.getAllTodos();
+        return super.ok(res, todoReadDtos);
+      }
+
+      const todoReadDtos: Array<TodoReadDto> = await this._todoService.getTodosByOwnerId(ownerId);
+      return super.ok(res, todoReadDtos);
     } catch (error) {
       return super.internalServerError(res, error);
     }
@@ -46,10 +51,7 @@ class TodoController extends BaseController {
   public async getOneById(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
-
-      const todo: TodoReadDto = mockTodo;
-      todo.id = todoId;
-
+      const todo: TodoReadDto = await this._todoService.getTodoById(todoId);
       return super.ok(res, todo);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -62,8 +64,7 @@ class TodoController extends BaseController {
   public async deleteOne(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
-      console.log(`delete user Id ${todoId}`);
-
+      await this._todoService.deleteTodo(todoId);
       return super.noContent(res);
     } catch (error) {
       return super.internalServerError(res, error);
@@ -74,12 +75,14 @@ class TodoController extends BaseController {
   // @desc    update todo
   // @access  Public
   public async updateOne(req: express.Request, res: express.Response) {
-    const todoId = req.params.id;
-
-    const todo: TodoReadDto = mockTodo;
-    todo.id = todoId;
-
-    return super.ok(res, todo);
+    try {
+      const todoId = req.params.id;
+      const todoData = req.body;
+      await this._todoService.updateTodo(todoId, todoData);
+      return super.noContent(res);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
   }
 }
 
