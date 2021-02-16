@@ -1,4 +1,4 @@
-import { UserDocument } from 'src/typings/models/user';
+import { UserDocument } from '../../typings/models/user';
 import Repository from './base/repository';
 import { IUserRepository } from './interfaces';
 

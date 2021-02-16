@@ -1,0 +1,10 @@
+import { TodoReadDto, TodoUpdateDto, TodoCreateDto } from '../../typings/dtos/todo';
+
+interface ITodoService {
+  createTodo(todoCreateDto: TodoCreateDto): Promise<TodoReadDto>;
+  deleteTodo(id: string): Promise<void>;
+  updateTodo(id: string, data: TodoUpdateDto): Promise<void>;
+  getTodosByOwnerId(id: string): Promise<Array<TodoReadDto>>;
+}
+
+export { ITodoService };

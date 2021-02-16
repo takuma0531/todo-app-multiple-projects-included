@@ -1,3 +1,4 @@
 import UserRepository from './userRepository';
+import TodoRepository from './todoRepository';
 
-export { UserRepository };
+export { UserRepository, TodoRepository };

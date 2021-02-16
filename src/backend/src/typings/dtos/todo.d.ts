@@ -1,4 +1,4 @@
-import { BaseReadDto, BaseCreateDto } from './base';
+import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from './base';
 import { ITodo } from '../models/todo';
 
 interface TodoReadDto extends BaseReadDto {
@@ -18,4 +18,6 @@ interface TodoCreateDto extends BaseCreateDto {
   contributors: ITodo['contributors'];
 }
 
-export { TodoReadDto, TodoCreateDto };
+interface TodoUpdateDto extends BaseUpdateDto {}
+
+export { TodoReadDto, TodoCreateDto, TodoUpdateDto };
