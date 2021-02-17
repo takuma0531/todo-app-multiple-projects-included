@@ -53,3 +53,13 @@ $ yarn install --frozen-lockfile
 # start the project!
 $ yarn dev
 ```
+
+## How to deploy the project
+
+### With docker-compose
+```
+$ cd prod/docker-compose
+
+# with docker running in your local machine
+$cdocker-compose up
+```
