@@ -60,5 +60,5 @@ $ yarn dev
 ```
 $ cd prod/docker-compose
 
-$ docker-compose up
+$ docker-compose up -d
 ```
