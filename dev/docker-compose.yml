@@ -5,6 +5,7 @@ services:
         build:
             context: .
         working_dir: /opt/developer/app
+        container_name: development-container
         volumes:
             - "..:/opt/developer/app"
         ports:
@@ -14,7 +15,7 @@ services:
     mongodb:
       image: mongo:latest
       restart: always
-      container_name: mongodb-container
+      container_name: mongodb-container-dev
       environment:
         MONGO_INITDB_ROOT_USERNAME: mongo-user
         MONGO_INITDB_ROOT_PASSWORD: mongo-password
