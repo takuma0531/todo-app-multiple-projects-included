@@ -60,6 +60,5 @@ $ yarn dev
 ```
 $ cd prod/docker-compose
 
-# with docker running in your local machine
-$cdocker-compose up
+$ docker-compose up
 ```
