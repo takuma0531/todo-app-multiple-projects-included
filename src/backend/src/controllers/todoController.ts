@@ -2,7 +2,7 @@ import express from 'express';
 import BaseController from './base/baseController';
 import { ITodoService } from '../services/interfaces';
 
-import { TodoReadDto, TodoCreateDto } from '../typings/dtos/todo';
+import { TodoReadDto, TodoCreateDto, TodoUpdateDto } from '../typings/dtos/todo';
 
 class TodoController extends BaseController {
   private readonly _todoService: ITodoService;
@@ -77,7 +77,7 @@ class TodoController extends BaseController {
   public async updateOne(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
-      const todoData = req.body;
+      const todoData: TodoUpdateDto = req.body;
       await this._todoService.updateTodo(todoId, todoData);
       return super.noContent(res);
     } catch (error) {
