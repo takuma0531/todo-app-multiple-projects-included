@@ -1,5 +1,4 @@
+import ServerConstants from './serverConstants';
 import JwtConstants from './jwtConstants';
 
-export {
-    JwtConstants
-}
+export { ServerConstants, JwtConstants };
