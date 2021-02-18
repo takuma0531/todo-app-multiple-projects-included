@@ -50,7 +50,7 @@ $ cd typescript-todo-app/src/backend
 
 $ yarn install --frozen-lockfile
 ```
-update src/backend/src/config/.env.development with your own config such as a connection string
+update `src/backend/src/config/.env.development` with your own config such as a connection string
 
 ```
 # start the project!
