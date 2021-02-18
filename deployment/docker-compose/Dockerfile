@@ -4,7 +4,7 @@ WORKDIR /app
 
 # copy all necessary files from local
 COPY src/backend ./
-COPY prod/docker-compose/init.sh ./
+COPY deployment/docker-compose/init.sh ./
 
 # add 755 permission to be executed
 RUN chmod 0755 /app/init.sh

@@ -4,21 +4,22 @@ services:
   node:
     build:
       context: ../..
-      dockerfile: prod/docker-compose/Dockerfile
+      dockerfile: deployment/docker-compose/Dockerfile
     working_dir: /app
     container_name: node-container
     ports:
       - 5000:5000
+    env_file: 
+        - ".env.${DOCKER_ENV}"
     command: >
       /bin/sh /app/init.sh
   mongodb:
     image: mongo:latest
     restart: always
     container_name: mongodb-container
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo-user
-      MONGO_INITDB_ROOT_PASSWORD: mongo-password
     ports:
       - 27017:27017
     volumes:
       - ./mongodb:/data/db
+    env_file: 
+        - ".env.${DOCKER_ENV}"

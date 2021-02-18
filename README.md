@@ -56,9 +56,17 @@ $ yarn dev
 
 ## How to deploy the project
 
-### With docker-compose
+### With docker-compose (local deployment)
 ```
-$ cd prod/docker-compose
+$ cd deployment/docker-compose
 
-$ docker-compose up -d
+$ export DOCKER_ENV=development && docker-compose up -d
 ```
+
+### With docker-compose (production)
+add `.env.production` in `deployment/docker-compose`
+```
+$ cd deployment/docker-compose
+
+$ export DOCKER_ENV=production && docker-compose up -d
+``
