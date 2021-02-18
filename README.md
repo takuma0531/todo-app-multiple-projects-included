@@ -49,10 +49,14 @@ $ git clone https://github.com/ryuichi24/typescript-todo-app
 $ cd typescript-todo-app/src/backend
 
 $ yarn install --frozen-lockfile
+```
+update src/backend/src/config/.env.development with your own config such as a connection string
 
+```
 # start the project!
 $ yarn dev
 ```
+
 
 ## How to deploy the project
 
