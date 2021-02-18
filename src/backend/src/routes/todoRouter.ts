@@ -15,5 +15,7 @@ router.get('/:id', (req: express.Request, res: express.Response) => todoControll
 router.post('/', (req: express.Request, res: express.Response) => todoController.createOne(req, res));
 router.delete('/:id', (req: express.Request, res: express.Response) => todoController.deleteOne(req, res));
 router.put('/:id', (req: express.Request, res: express.Response) => todoController.updateOne(req, res));
+router.put('/add-contributor/:id', (req: express.Request, res: express.Response) => todoController.addContributor(req, res));
+
 
 export default router;

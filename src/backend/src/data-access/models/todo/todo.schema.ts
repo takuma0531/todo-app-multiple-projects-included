@@ -15,6 +15,7 @@ const todoSchema = new Schema<TodoDocument>(
       {
         name: {
           type: String,
+          required: true,
         },
         completed: {
           type: Boolean,

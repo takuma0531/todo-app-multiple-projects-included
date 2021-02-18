@@ -2,7 +2,7 @@ import express from 'express';
 import BaseController from './base/baseController';
 import { ITodoService } from '../services/interfaces';
 
-import { TodoReadDto, TodoCreateDto, TodoUpdateDto } from '../typings/dtos/todo';
+import { TodoReadDto, TodoCreateDto, TodoUpdateDto, AddContributorDto } from '../typings/dtos/todo';
 
 class TodoController extends BaseController {
   private readonly _todoService: ITodoService;
@@ -79,6 +79,24 @@ class TodoController extends BaseController {
       const todoId = req.params.id;
       const todoData: TodoUpdateDto = req.body;
       await this._todoService.updateTodo(todoId, todoData);
+      return super.noContent(res);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
+  }
+
+  // @route   PUT api/v1/todos/add-contributor/:id
+  // @desc    add a contributor
+  // @access  Public
+  public async addContributor(req: express.Request, res: express.Response) {
+    try {
+      const todoId = req.params.id;
+      const contributorId = req.body.contributorId;
+      const addContributorDto: AddContributorDto = {
+        todoId,
+        contributorId
+      } 
+      await this._todoService.addContributor(addContributorDto);
       return super.noContent(res);
     } catch (error) {
       return super.internalServerError(res, error);
