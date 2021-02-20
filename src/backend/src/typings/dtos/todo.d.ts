@@ -23,6 +23,13 @@ interface AddContributorDto {
   contributorId: string;
 }
 
-interface TodoUpdateDto extends BaseUpdateDto {}
+interface TodoUpdateDto extends BaseUpdateDto {
+  title?: ITodo['title'];
+  description?: ITodo['description'];
+  items?: ITodo['items'];
+  completed?: ITodo['completed'];
+  owner?: ITodo['owner'];
+  contributors?: ITodo['contributors'];
+}
 
 export { TodoReadDto, TodoCreateDto, TodoUpdateDto, AddContributorDto };

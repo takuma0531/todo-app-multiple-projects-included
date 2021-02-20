@@ -6,15 +6,15 @@ import { UserDocument } from './user';
 interface ITodo {
   title: string;
   description: string;
-  items: Array<item>;
+  items: Array<Item>;
   completed: boolean;
   owner: string | UserDocument;
   contributors: Array<string | UserDocument>;
 }
 
-interface item {
+interface Item {
   name: string;
-  completed: boolean;
+  completed?: boolean;
 }
 
 interface TodoDocument extends ITodo, Document, IHasCustomUserMethod {}
@@ -29,4 +29,4 @@ interface IHasCustomTodoStaticMethod extends IHasCustomStaticMethod<TodoDocument
   // custom static methods for TodoModel
 }
 
-export { ITodo, TodoDocument, TodoModel };
+export { ITodo, TodoDocument, TodoModel, Item };
