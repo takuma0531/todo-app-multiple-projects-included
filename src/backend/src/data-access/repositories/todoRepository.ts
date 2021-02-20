@@ -13,22 +13,6 @@ class TodoRepository extends Repository<TodoDocument> implements ITodoRepository
       throw error;
     }
   }
-
-  public async addContributor(todoId: string, contributorId: string): Promise<TodoDocument> {
-    try {
-      const todo = await this._model.findById(todoId);
-      
-      // TODO: add proper validation
-      if (!todo) throw new Error('Todo not found');
-      if (!contributorId) throw new Error('No contributor Id provided');
-
-      todo?.contributors.push(contributorId);
-      const savedTodo = await todo?.save();
-      return savedTodo!;
-    } catch (error) {
-      throw error;
-    }
-  }
 }
 
 export default TodoRepository;

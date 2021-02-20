@@ -18,11 +18,6 @@ interface TodoCreateDto extends BaseCreateDto {
   contributors: ITodo['contributors'];
 }
 
-interface AddContributorDto {
-  todoId: string;
-  contributorId: string;
-}
-
 interface TodoUpdateDto extends BaseUpdateDto {
   title?: ITodo['title'];
   description?: ITodo['description'];
@@ -32,4 +27,4 @@ interface TodoUpdateDto extends BaseUpdateDto {
   contributors?: ITodo['contributors'];
 }
 
-export { TodoReadDto, TodoCreateDto, TodoUpdateDto, AddContributorDto };
+export { TodoReadDto, TodoCreateDto, TodoUpdateDto };

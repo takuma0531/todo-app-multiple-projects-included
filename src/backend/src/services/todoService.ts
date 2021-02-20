@@ -1,6 +1,6 @@
 import { Todo } from '../data-access/models';
 import { ITodoRepository } from '../data-access/repositories/interfaces';
-import { TodoCreateDto, TodoReadDto, TodoUpdateDto, AddContributorDto } from '../typings/dtos/todo';
+import { TodoCreateDto, TodoReadDto, TodoUpdateDto } from '../typings/dtos/todo';
 import { ITodoService } from './interfaces';
 
 class TodoService implements ITodoService {
@@ -61,17 +61,6 @@ class TodoService implements ITodoService {
       const todos = await this._todoRepository.getTodosByOwnerId(id);
       const todoReadDtos = todos.map((t) => t.toReadDto());
       return todoReadDtos;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public async addContributor(addContributorDto: AddContributorDto): Promise<TodoReadDto> {
-    try {
-      const todoReadDto = await (
-        await this._todoRepository.addContributor(addContributorDto.todoId, addContributorDto.contributorId)
-      ).toReadDto();
-      return todoReadDto;
     } catch (error) {
       throw error;
     }
