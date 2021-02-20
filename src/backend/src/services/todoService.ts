@@ -1,19 +1,24 @@
 import { Todo } from '../data-access/models';
-import { ITodoRepository } from '../data-access/repositories/interfaces';
+import { ITodoRepository, IUserRepository } from '../data-access/repositories/interfaces';
 import { TodoCreateDto, TodoReadDto, TodoUpdateDto } from '../typings/dtos/todo';
 import { ITodoService } from './interfaces';
 
 class TodoService implements ITodoService {
   private readonly _todoRepository: ITodoRepository;
+  private readonly _userRepository: IUserRepository;
 
-  constructor(todoRepository: ITodoRepository) {
+  constructor(todoRepository: ITodoRepository, userRepository: IUserRepository) {
     this._todoRepository = todoRepository;
+    this._userRepository = userRepository
   }
 
   public async createTodo(todoCreateDto: TodoCreateDto): Promise<TodoReadDto> {
     try {
       const todoDoc = Todo.toDocument(todoCreateDto);
       const todoReadDto = await (await this._todoRepository.addOne(todoDoc)).toReadDto();
+      const owner = await this._userRepository.getOneById(todoDoc.owner.toString());
+      owner.todos.push(todoDoc);
+      await owner.save();
       return todoReadDto;
     } catch (error) {
       throw error;
