@@ -14,11 +14,17 @@ class TodoService implements ITodoService {
 
   public async createTodo(todoCreateDto: TodoCreateDto): Promise<TodoReadDto> {
     try {
+      const owner = await this._userRepository.getOneById(todoCreateDto.owner.toString());
+      // TODO: update the validation
+      if(!owner) throw new Error('Not found by id');
+
       const todoDoc = Todo.toDocument(todoCreateDto);
-      const todoReadDto = await (await this._todoRepository.addOne(todoDoc)).toReadDto();
-      const owner = await this._userRepository.getOneById(todoDoc.owner.toString());
+
       owner.todos.push(todoDoc);
       await owner.save();
+
+      const todoReadDto = await (await this._todoRepository.addOne(todoDoc)).toReadDto();
+      
       return todoReadDto;
     } catch (error) {
       throw error;
@@ -44,6 +50,8 @@ class TodoService implements ITodoService {
   public async getTodoById(id: string): Promise<TodoReadDto> {
     try {
       const todo = await this._todoRepository.getOneById(id);
+      // TODO: update the validation
+      if(!todo) throw new Error('Not found by id');
       const todoReadDto: TodoReadDto = todo.toReadDto();
       return todoReadDto;
     } catch (error) {

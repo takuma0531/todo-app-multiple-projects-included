@@ -26,11 +26,9 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
     }
   }
 
-  public async getOneById(id: string): Promise<TDocument> {
+  public async getOneById(id: string): Promise<TDocument | null> {
     try {
       const document = await this._model.findById(id);
-      // TODO: add different validation
-      if (!document) throw new Error('Not found by id');
       return document;
     } catch (error) {
       throw error;

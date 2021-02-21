@@ -5,7 +5,7 @@ interface IRepository<TDocument extends Document> {
 
   getAll(): Promise<Array<TDocument>>;
 
-  getOneById(id: string): Promise<TDocument>;
+  getOneById(id: string): Promise<TDocument | null>;
 
   removeOneById(id: string): Promise<void>;
 

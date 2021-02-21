@@ -81,6 +81,8 @@ class UserService implements IUserService {
   public async getUserById(id: string): Promise<UserReadDto> {
     try {
       const user = await this._userRepository.getOneById(id);
+      // TODO: update the validation
+      if(!user) throw new Error('Not found by id');
       return user.toReadDto();
     } catch (error) {
       throw error;
