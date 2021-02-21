@@ -83,7 +83,7 @@ $ heroku apps:create <your heroku app name>
 set environmental variables (please refer to a `src/backend/src/config/.env.example` file) with the following command:
 
 ```
-$ heroku config:get <ENVIRONMENTAL_VARIABLE_NAME> --app=<your heroku app name>
+$ heroku config:get <ENVIRONMENTAL_VARIABLE_NAME>=<value> --app=<your heroku app name>
 ```
 If everything is ready, do the next commands:
 
