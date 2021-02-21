@@ -8,6 +8,10 @@
       "es2017",
       "esnext.asynciterable"
     ],
+    "typeRoots": [
+      "./src/typings",
+      "./node_modules/@types",
+    ],
     "sourceMap": true,
     "outDir": "./dist",
     "moduleResolution": "node",
@@ -31,8 +35,7 @@
     "node_modules"
   ],
   "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts",
-    "./test/**/*.ts"
+    "./src/**/*",
+    "./test/**/*"
   ]
 }

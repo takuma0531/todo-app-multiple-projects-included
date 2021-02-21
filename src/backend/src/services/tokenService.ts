@@ -2,6 +2,7 @@ import jwtClient from 'jsonwebtoken';
 import { ITokenService } from './interfaces';
 import { initDotenv } from '../config';
 import { JwtConstants } from '../config/constants';
+import { UserClaims } from '../typings/common/userClaims';
 
 initDotenv();
 
@@ -23,7 +24,7 @@ class JwtTokenService implements ITokenService {
     return token;
   }
 
-  public verifyToken(token: string): string | object {
+  public verifyToken(token: string): UserClaims {
     try {
       const decoded = this._jwtClient.verify(token, this._jwtSecret);
       return decoded;

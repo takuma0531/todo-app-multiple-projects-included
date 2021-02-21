@@ -2,7 +2,7 @@ import * as express from 'express';
 
 import HttpStatusCode from '../../enums/httpStatusCode';
 import { BaseReadDto } from '../../typings/dtos/base';
-import { SuccessResponse, ErrorResponse } from '../../typings/common';
+import { SuccessResponse, ErrorResponse } from '../../typings/common/response';
 
 abstract class BaseController {
   public ok(res: express.Response, data?: any | Array<any>) {
