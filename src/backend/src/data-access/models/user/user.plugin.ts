@@ -3,14 +3,14 @@ import { Schema, HookNextFunction } from 'mongoose';
 import { UserDocument } from '../../../typings/models/user';
 import { bcryptService } from '../../../services';
 import { UserCreateDto, UserReadDto } from '../../../typings/dtos/user';
-
+import { Todo } from '../todo/todo.schema';
 
 const userPlugin = (userSchema: Schema<UserDocument>) => {
   userSchema.static('toDocument', function (userCreateDto: UserCreateDto) {
     return new this(userCreateDto);
   });
 
-  userSchema.method('toReadDto', function() {
+  userSchema.method('toReadDto', function () {
     const userReadDto: UserReadDto = {
       id: this._id,
       username: this.username,
@@ -21,11 +21,11 @@ const userPlugin = (userSchema: Schema<UserDocument>) => {
       tags: this.tags,
       roles: this.roles,
       todos: this.todos,
-      friends: this.friends
-    }
-    
+      friends: this.friends,
+    };
+
     return userReadDto;
-  })
+  });
 
   userSchema.pre('save', async function (next: HookNextFunction) {
     if (this.isNew && this.isModified('password')) {
@@ -40,7 +40,10 @@ const userPlugin = (userSchema: Schema<UserDocument>) => {
     }
   });
 
-  // TODO: add hook to do cascade delete for todos owned by the deleted user
+  userSchema.pre('remove', async function (next: HookNextFunction) {
+    await Todo.deleteMany({ owner: this._id });
+    next();
+  });
 };
 
 export { userPlugin };

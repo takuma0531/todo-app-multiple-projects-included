@@ -1,30 +1,19 @@
 import { Todo } from '../data-access/models';
-import { ITodoRepository, IUserRepository } from '../data-access/repositories/interfaces';
+import { ITodoRepository } from '../data-access/repositories/interfaces';
 import { TodoCreateDto, TodoReadDto, TodoUpdateDto } from '../typings/dtos/todo';
 import { ITodoService } from './interfaces';
 
 class TodoService implements ITodoService {
   private readonly _todoRepository: ITodoRepository;
-  private readonly _userRepository: IUserRepository;
 
-  constructor(todoRepository: ITodoRepository, userRepository: IUserRepository) {
+  constructor(todoRepository: ITodoRepository) {
     this._todoRepository = todoRepository;
-    this._userRepository = userRepository
   }
 
   public async createTodo(todoCreateDto: TodoCreateDto): Promise<TodoReadDto> {
     try {
-      const owner = await this._userRepository.getOneById(todoCreateDto.owner.toString());
-      // TODO: update the validation
-      if(!owner) throw new Error('Not found by id');
-
       const todoDoc = Todo.toDocument(todoCreateDto);
-
-      owner.todos.push(todoDoc);
-      await owner.save();
-
       const todoReadDto = await (await this._todoRepository.addOne(todoDoc)).toReadDto();
-      
       return todoReadDto;
     } catch (error) {
       throw error;

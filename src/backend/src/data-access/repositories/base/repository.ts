@@ -37,7 +37,8 @@ class Repository<TDocument extends Document> implements IRepository<TDocument> {
 
   public async removeOneById(id: string): Promise<void> {
     try {
-      await this._model.findByIdAndRemove(id);
+      const doc = await this._model.findById(id)
+      await doc?.remove();
     } catch (error) {
       throw error;
     }

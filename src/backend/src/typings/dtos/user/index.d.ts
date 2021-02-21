@@ -25,10 +25,13 @@ interface UserCreateDto extends BaseCreateDto {
 }
 
 interface UserUpdateDto extends BaseUpdateDto {
-  username: IUser['username'];
-  email: IUser['email'];
-  phone: IUser['phone'];
-  avatar: IUser['avatar'];
+  username?: IUser['username'];
+  email?: IUser['email'];
+  phone?: IUser['phone'];
+  avatar?: IUser['avatar'];
+  tags?: IUser['tags'];
+  roles?: IUser['roles'];
+  friends?: IUser['friends'];
 }
 
 interface AuthorizeResult {

@@ -1,7 +1,8 @@
-import { Schema } from 'mongoose';
+import { HookNextFunction, Schema } from 'mongoose';
 
 import { TodoDocument } from '../../../typings/models/todo';
 import { TodoCreateDto, TodoReadDto } from '../../../typings/dtos/todo';
+import { User } from '../user/user.schema';
 
 const todoPlugin = (todoSchema: Schema<TodoDocument>) => {
   todoSchema.static('toDocument', function (todoCreateDto: TodoCreateDto) {
@@ -16,10 +17,21 @@ const todoPlugin = (todoSchema: Schema<TodoDocument>) => {
       items: this.items,
       completed: this.completed,
       owner: this.owner,
-      contributors: this.contributors
+      contributors: this.contributors,
     };
 
     return todoReadDto;
+  });
+
+  todoSchema.pre('save', async function (next: HookNextFunction) {
+    try {
+      const owner = await User.findById(this.owner);
+      owner?.todos.push(this._id);
+      await owner?.save();
+      next();
+    } catch (error) {
+      throw error;
+    }
   });
 };
 
