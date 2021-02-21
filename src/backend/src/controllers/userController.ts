@@ -29,7 +29,7 @@ class UserController extends BaseController {
 
   // @route   GET api/v1/users
   // @desc    get all users
-  // @access  Public
+  // @access  Private
   public async getAll(_: express.Request, res: express.Response) {
     try {
       const users: Array<UserReadDto> = await this._userService.getUsers();
@@ -41,7 +41,7 @@ class UserController extends BaseController {
 
   // @route   GET api/v1/users/:id
   // @desc    get user by its id
-  // @access  Public
+  // @access  Private
   public async getOneById(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
@@ -54,7 +54,7 @@ class UserController extends BaseController {
 
   // @route   DELETE api/v1/users/:id
   // @desc    delete user
-  // @access  Public
+  // @access  Private
   public async deleteOne(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;
@@ -67,7 +67,7 @@ class UserController extends BaseController {
 
   // @route   PUT api/v1/users/:id
   // @desc    update user
-  // @access  Public
+  // @access  Private
   public async updateOne(req: express.Request, res: express.Response) {
     try {
       const userId = req.params.id;

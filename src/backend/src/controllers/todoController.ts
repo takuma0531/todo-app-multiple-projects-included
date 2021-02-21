@@ -15,7 +15,7 @@ class TodoController extends BaseController {
 
   // @route   POST api/v1/todos
   // @desc    create todo
-  // @access  Public
+  // @access  Private
   public async createOne(req: express.Request, res: express.Response) {
     try {
       const todoCreateDto: TodoCreateDto = req.body;
@@ -28,7 +28,7 @@ class TodoController extends BaseController {
 
   // @route   GET api/v1/todos?owner=id
   // @desc    get todos and can be filtered by owner id
-  // @access  Public
+  // @access  Private
   public async getTodos(req: express.Request, res: express.Response) {
     try {
       const ownerId = req.query.owner as string;
@@ -47,7 +47,7 @@ class TodoController extends BaseController {
 
   // @route   GET api/v1/todos/:id
   // @desc    get todo by its id
-  // @access  Public
+  // @access  Private
   public async getOneById(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
@@ -60,7 +60,7 @@ class TodoController extends BaseController {
 
   // @route   DELETE api/v1/todos/:id
   // @desc    delete todo
-  // @access  Public
+  // @access  Private
   public async deleteOne(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
@@ -73,7 +73,7 @@ class TodoController extends BaseController {
 
   // @route   PUT api/v1/todos/:id
   // @desc    update todo
-  // @access  Public
+  // @access  Private
   public async updateOne(req: express.Request, res: express.Response) {
     try {
       const todoId = req.params.id;
