@@ -1,5 +1,5 @@
-import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from './base';
-import { ITodo } from '../models/todo';
+import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from '../base';
+import { ITodo } from '../../models/todo';
 
 interface TodoReadDto extends BaseReadDto {
   title: ITodo['title'];

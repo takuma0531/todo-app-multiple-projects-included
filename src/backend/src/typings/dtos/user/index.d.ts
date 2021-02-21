@@ -1,5 +1,5 @@
-import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from './base';
-import { IUser } from '../models/user';
+import { BaseReadDto, BaseCreateDto, BaseUpdateDto } from '../base';
+import { IUser } from '../../models/user';
 
 interface UserReadDto extends BaseReadDto {
   username: IUser['username'];

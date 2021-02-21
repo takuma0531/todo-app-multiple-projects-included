@@ -1,7 +1,7 @@
 import { Model, Document } from 'mongoose';
-import { TodoCreateDto, TodoReadDto } from '../dtos/todo';
-import { IHasCustomMethod ,IHasCustomStaticMethod } from './base';
-import { UserDocument } from './user';
+import { TodoCreateDto, TodoReadDto } from '../../dtos';
+import { IHasCustomMethod ,IHasCustomStaticMethod } from '../base';
+import { UserDocument } from '../user';
 
 interface ITodo {
   title: string;
