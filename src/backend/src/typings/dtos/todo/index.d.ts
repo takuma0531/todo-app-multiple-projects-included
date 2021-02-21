@@ -23,7 +23,6 @@ interface TodoUpdateDto extends BaseUpdateDto {
   description?: ITodo['description'];
   items?: ITodo['items'];
   completed?: ITodo['completed'];
-  owner?: ITodo['owner'];
   contributors?: ITodo['contributors'];
 }
 
