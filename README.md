@@ -74,3 +74,25 @@ $ cd deployment/docker-compose
 
 $ export DOCKER_ENV=production && docker-compose up -d
 ```
+
+### With heroku and docker
+if you have not made a heroku app yet, make it with the following command:
+```
+$ heroku apps:create <your heroku app name>
+```
+set environmental variables (please refer to a `src/backend/src/config/.env.example` file) with the following command:
+
+```
+$ heroku config:get <ENVIRONMENTAL_VARIABLE_NAME> --app=<your heroku app name>
+```
+If everything is ready, do the next commands:
+
+```
+$ cd deployment/heroku
+
+# deploy the app!
+$ export HEROKU_APP=<your heroku app name> && /bin/sh deploy.sh
+
+# you can check the url to the app
+$ heroku info --app=$(echo $HEROKU_APP)
+```

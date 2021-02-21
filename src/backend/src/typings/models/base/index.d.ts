@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { BaseCreateDto, BaseReadDto } from '../dtos/base';
+import { BaseCreateDto, BaseReadDto } from '../../dtos';
 
 interface IHasCustomMethod<TReadDto extends BaseReadDto> {
   /**
