@@ -15,7 +15,7 @@ class AuthorizeMiddleware {
         try {
             let token = req.get('authorization');
             if(!token) {
-                // TODO: update it
+                // TODO: make the process simple
                 const errorResponse: ErrorResponse = {
                     error: {
                       code: HttpStatusCode.UNAUTHORIZED,
@@ -25,6 +25,7 @@ class AuthorizeMiddleware {
                   return res.status(HttpStatusCode.UNAUTHORIZED).json(errorResponse);
             }
 
+            // TODO: split with a space and get the last
             token = token.slice(7);
             const decoded = this._tokenService.verifyToken(token);
             req.userClaims = decoded;

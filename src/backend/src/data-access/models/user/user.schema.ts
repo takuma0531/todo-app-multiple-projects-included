@@ -26,14 +26,17 @@ const userSchema = new Schema<UserDocument>(
     avatar: {
       type: String,
     },
+    // TODO: add enum
     gender: {
       type: String,
     },
+    // TODO: add enum?
     tags: [
       {
         type: String,
       },
     ],
+    // TODO: add enum
     roles: [
       {
         type: String,
