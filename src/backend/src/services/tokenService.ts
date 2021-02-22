@@ -26,6 +26,7 @@ class JwtTokenService implements ITokenService {
 
   public verifyToken(token: string): UserClaims {
     try {
+      // TODO: add issuer, audience, and subject to verify
       const decoded = this._jwtClient.verify(token, this._jwtSecret);
       return decoded;
     } catch (error) {
