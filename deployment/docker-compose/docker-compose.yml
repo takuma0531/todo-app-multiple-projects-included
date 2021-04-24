@@ -13,6 +13,8 @@ services:
         - ".env.${DOCKER_ENV}"
     command: >
       /bin/sh /app/init.sh
+    depends_on:
+      - mongodb
   mongodb:
     image: mongo:latest
     restart: always

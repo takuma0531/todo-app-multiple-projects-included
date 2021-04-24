@@ -4,6 +4,7 @@ import { UserService, jwtTokenService, bcryptService } from '../services';
 import { UserRepository } from '../data-access/repositories';
 import { AuthorizeMiddleware } from '../middlewares';
 import { User } from '../data-access/models';
+import { upload } from '../middlewares';
 
 const router = Router();
 
@@ -45,5 +46,18 @@ router.put(
 );
 
 router.post('/login', (req: express.Request, res: express.Response) => userController.loginUser(req, res));
+
+router.post(
+  '/avatar',
+  (req: express.Request, res: express.Response, next: express.NextFunction) =>
+    authorizeMiddleware.verifyToken(req, res, next),
+  upload('./tmp_dir/').single('file'),
+  (req: express.Request, res: express.Response) => userController.saveAvatar(req, res),
+);
+
+router.get(
+  '/avatar/:id',
+  (req: express.Request, res: express.Response) => userController.getAvatar(req, res),
+);
 
 export default router;

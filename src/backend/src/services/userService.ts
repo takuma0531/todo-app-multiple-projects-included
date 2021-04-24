@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { JwtConstants } from '../config/constants';
 import { ICryptoService, ITokenService, IUserService } from './interfaces';
 import { IUserRepository } from '../data-access/repositories/interfaces';
@@ -82,7 +83,7 @@ class UserService implements IUserService {
     try {
       const user = await this._userRepository.getOneById(id);
       // TODO: update the validation
-      if(!user) throw new Error('Not found by id');
+      if (!user) throw new Error('Not found by id');
       return user.toReadDto();
     } catch (error) {
       throw error;
@@ -114,6 +115,17 @@ class UserService implements IUserService {
     };
 
     return payload;
+  }
+
+  public async saveAvatar(pathToImage: string, userId: string): Promise<void> {
+    const imageBuffer = fs.readFileSync(pathToImage);
+    await this._userRepository.updateOneById(userId, { avatar: imageBuffer });
+    fs.unlinkSync(pathToImage);
+  }
+
+  public async getAvatar(userId: string): Promise<Buffer> {
+    const user = await this._userRepository.getOneById(userId);
+    return user?.avatar!;
   }
 }
 

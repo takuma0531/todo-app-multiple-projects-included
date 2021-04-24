@@ -12,6 +12,10 @@ abstract class BaseController {
     return res.status(HttpStatusCode.OK).json(successResponse);
   }
 
+  public okWithRaw(res: express.Response, data: any) {
+    return res.status(HttpStatusCode.OK).send(data);
+  }
+
   public created<TReadDto extends BaseReadDto>(res: express.Response, data: TReadDto) {
     const successResponse: SuccessResponse = { data }
     // TODO: add host and route to location header

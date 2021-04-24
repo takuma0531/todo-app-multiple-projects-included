@@ -7,6 +7,8 @@ interface IUserService {
   getUserById(id: string): Promise<UserReadDto>;
   updateUser(id: string, data: UserUpdateDto): Promise<void>;
   deleteUser(id: string): Promise<void>;
+  saveAvatar(pathToImage: string, userId: string): Promise<void>;
+  getAvatar(userId: string): Promise<Buffer>;
 }
 
 export { IUserService };

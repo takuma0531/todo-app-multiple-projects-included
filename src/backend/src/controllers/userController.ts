@@ -95,6 +95,32 @@ class UserController extends BaseController {
       return super.internalServerError(res, error);
     }
   }
+
+  // @route   POST api/v1/users/avatar
+  // @desc    save an avatar
+  // @access  Private
+  public async saveAvatar(req: express.Request, res: express.Response) {
+    try {
+      await this._userService.saveAvatar(req.file.path, req.userClaims.id!);
+      return super.ok(res);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
+  }
+
+  // @route   GET api/v1/users/avatar/:id
+  // @desc    get an avatar
+  // @access  Public
+  public async getAvatar(req: express.Request, res: express.Response) {
+    try {
+      const avatar = await this._userService.getAvatar(req.params.id);
+      return super.okWithRaw(res, avatar);
+    } catch (error) {
+      return super.internalServerError(res, error);
+    }
+  }
+
+
 }
 
 export default UserController;

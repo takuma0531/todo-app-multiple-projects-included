@@ -8,7 +8,7 @@ interface IUser {
   password: string;
   phone: string;
   email: string;
-  avatar?: string;
+  avatar?: Buffer;
   gender: string;
   tags: Array<string>;
   roles: Array<string>;

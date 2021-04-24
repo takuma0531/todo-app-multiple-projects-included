@@ -24,7 +24,7 @@ const userSchema = new Schema<UserDocument>(
       unique: true,
     },
     avatar: {
-      type: String,
+      type: Buffer,
     },
     // TODO: add enum
     gender: {
