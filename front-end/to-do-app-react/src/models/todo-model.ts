@@ -1,5 +1,5 @@
-import { BaseModel, BaseModelProps } from "@/models/base-model";
-import { validationUtil } from "@/utils/validation";
+import { BaseModel, BaseModelProps } from "./base-model";
+import { validationUtil } from "../utils/validation";
 
 interface Props extends BaseModelProps {
   content: string;

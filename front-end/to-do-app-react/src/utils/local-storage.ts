@@ -1,9 +1,9 @@
-import { validationUtil } from "@/utils/validation";
+import { validationUtil } from "./validation";
 
 const get = (key: string) => {
   if (validationUtil.isEmpty(key)) throw new Error("Invalid key");
   const item = localStorage.getItem(key);
-  if (!item) throw new Error("Something wrong");
+  if (!item) return [];
   return JSON.parse(item);
 };
 

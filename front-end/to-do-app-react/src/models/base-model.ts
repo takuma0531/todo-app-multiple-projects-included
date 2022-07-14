@@ -1,5 +1,3 @@
-import { randomUUID } from "crypto";
-
 export interface BaseModelProps {
   createdAt?: Date;
   updatedAt?: Date;
@@ -11,7 +9,7 @@ export abstract class BaseModel<TProps extends BaseModelProps> {
 
   constructor(props: TProps, id?: string) {
     const isNew = id === undefined;
-    this._id = isNew ? randomUUID() : id;
+    this._id = isNew ? window.crypto.randomUUID() : id;
     this._props = {
       ...props,
       createdAt: isNew ? new Date() : props.createdAt,
