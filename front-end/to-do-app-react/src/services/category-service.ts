@@ -1,2 +1,1 @@
-import { localStorageUtil } from "../utils/local-storage";
-
+import { localStorageUtil } from "@/utils/local-storage";
