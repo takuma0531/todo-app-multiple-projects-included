@@ -23,6 +23,7 @@ const add = (categoryItem: any) => {
   const category = new Category(categoryItem);
   categoryList.push(category);
   localStorageUtil.set(CATEGORY_LIST, categoryList);
+  return category;
 };
 
 const update = (categoryItem: any) => {
@@ -34,6 +35,7 @@ const update = (categoryItem: any) => {
     categoryItem.id
   );
   localStorageUtil.set(CATEGORY_LIST, categoryList);
+  return categoryList[indexOfCategoryToEdit];
 };
 
 const remove = (categoryItem: any) => {
