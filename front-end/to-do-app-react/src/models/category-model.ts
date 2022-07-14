@@ -30,6 +30,12 @@ export class Category extends BaseModel<Props> {
     if (validationUtil.isEmpty(name)) throw new Error("Invalid name");
   }
 
+  public updateName(name: string) {
+    this.validateName(name);
+    this._props.name = name;
+    this.handleUpdate();
+  }
+
   public toggleIsSelected() {
     this._props.isSelected = !this._props.isSelected;
   }

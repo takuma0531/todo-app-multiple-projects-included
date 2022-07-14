@@ -28,4 +28,8 @@ export abstract class BaseModel<TProps extends BaseModelProps> {
   get updatedAt() {
     return this._props.updatedAt;
   }
+
+  protected handleUpdate() {
+    this._props.updatedAt = new Date();
+  }
 }

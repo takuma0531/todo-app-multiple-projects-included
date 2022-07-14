@@ -34,9 +34,11 @@ export class Todo extends BaseModel<Props> {
   public updateContent(content: string) {
     this.validateStringProperty(content);
     this._props.content = content;
+    this.handleUpdate();
   }
 
   public toggleIsCompleted() {
     this._props.isCompleted = !this._props.isCompleted;
+    this.handleUpdate();
   }
 }
