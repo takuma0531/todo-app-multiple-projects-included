@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 
-interface BaseModelProps {
+export interface BaseModelProps {
   createdAt?: Date;
   updatedAt?: Date;
 }
