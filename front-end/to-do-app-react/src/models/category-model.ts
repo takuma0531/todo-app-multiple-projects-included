@@ -10,6 +10,7 @@ interface Props extends BaseModelProps {
 export class Category extends BaseModel<Props> {
   public constructor(props: Props, id?: string) {
     super({ ...props }, id);
+
     this.validateName(props.name);
   }
 
