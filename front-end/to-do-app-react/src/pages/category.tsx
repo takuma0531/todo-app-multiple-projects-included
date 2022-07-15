@@ -1,5 +1,10 @@
 import react from "react";
+import { CategoryListContainer } from "../components/category-list-container";
 
 export function Category() {
-  return <div>Category</div>;
+  return (
+    <div>
+      <CategoryListContainer />
+    </div>
+  );
 }
