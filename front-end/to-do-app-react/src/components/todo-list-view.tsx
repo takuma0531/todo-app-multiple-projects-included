@@ -8,12 +8,16 @@ interface Props {
 
 export const TodoListView = ({ todos }: Props) => {
   const renderTodos = (todos: Todo[]) =>
-    todos.map((todo: Todo, index: number) => (
-      <li key={index}>
-        {todo.content}
-        <span>{/* createdAt */}</span>
-      </li>
-    ));
+    todos.map((todo: Todo, index: number) => {
+      console.log(todo.createdAt);
+
+      return (
+        <li key={index}>
+          {todo.content}
+          <span>{/* createdAt */}</span>
+        </li>
+      );
+    });
 
   return (
     <TodoListViewElement>
