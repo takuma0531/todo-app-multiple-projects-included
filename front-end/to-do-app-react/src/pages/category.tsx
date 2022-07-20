@@ -1,9 +1,10 @@
 import react from "react";
-// import { useLocation } from "react-router-dom";
+import { CategoryContainer } from "../components/category-container";
 
 export function Category() {
-  // const search = useLocation().search;
-  // const categoryId = new URLSearchParams(search).get("categoryId");
-  // return <div>{categoryId}</div>;
-  return <div></div>;
+  return (
+    <div>
+      <CategoryContainer />
+    </div>
+  );
 }
