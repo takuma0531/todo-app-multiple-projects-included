@@ -4,5 +4,6 @@ import { useCategoryList } from "../hooks/useCategoryList";
 
 export function CategoryListContainer() {
   const { categories } = useCategoryList();
+
   return <CategoryListView categories={categories} />;
 }

@@ -10,6 +10,7 @@ export const useTodoList = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const categoryId = searchParams.get("categoryId");
+    console.log(categoryId);
     if (!categoryId) return;
     const todoItems = TodoService.findByCategoryId(categoryId);
     setTodos(todoItems);

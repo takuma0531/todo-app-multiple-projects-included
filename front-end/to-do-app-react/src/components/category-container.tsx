@@ -5,5 +5,5 @@ import { TodoListView } from "./todo-list-view";
 export const CategoryContainer = () => {
   const { todos } = useTodoList();
 
-  return <TodoListView todos={todos}></TodoListView>;
+  return <TodoListView todos={todos} />;
 };
