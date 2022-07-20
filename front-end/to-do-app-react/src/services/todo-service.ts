@@ -17,6 +17,13 @@ const findById = (id: string) => {
   return todo;
 };
 
+const findByCategoryId = (categoryId: string) => {
+  const todos = localStorageUtil.get(TODO_LIST);
+  const founds = todos.filter((todo: any) => todo.categoryId === categoryId);
+  todoList = founds.map((todo: any) => new Todo(todo._props, todo.id));
+  return todoList;
+};
+
 const add = (todoItem: any) => {
   const todo = new Todo(todoItem);
   todoList.push(todo);
@@ -42,6 +49,7 @@ const remove = (todoItem: any) => {
 export const TodoService = Object.freeze({
   getAll,
   findById,
+  findByCategoryId,
   add,
   update,
   remove,
