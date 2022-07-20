@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Todo } from "../models/todo-model";
 
 interface Props {
@@ -6,5 +7,19 @@ interface Props {
 }
 
 export const TodoListView = ({ todos }: Props) => {
-  return <div></div>;
+  const renderTodos = (todos: Todo[]) =>
+    todos.map((todo: Todo, index: number) => (
+      <li key={index}>
+        {todo.content}
+        <span>{/* createdAt */}</span>
+      </li>
+    ));
+
+  return (
+    <TodoListViewElement>
+      <ul>{renderTodos(todos)}</ul>
+    </TodoListViewElement>
+  );
 };
+
+const TodoListViewElement = styled.div``;
