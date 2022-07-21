@@ -30,10 +30,7 @@ const update = (categoryItem: any) => {
   const indexOfCategoryToEdit = categoryList.findIndex(
     (category: any) => category.id === categoryItem.id
   );
-  categoryList[indexOfCategoryToEdit] = new Category(
-    categoryItem,
-    categoryItem.id
-  );
+  categoryList[indexOfCategoryToEdit] = categoryItem;
   localStorageUtil.set(CATEGORY_LIST, categoryList);
   return categoryList[indexOfCategoryToEdit];
 };
