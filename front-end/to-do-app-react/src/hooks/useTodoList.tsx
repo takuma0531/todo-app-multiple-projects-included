@@ -32,11 +32,6 @@ export const useTodoList = () => {
     TodoService.remove(todoItem);
   };
 
-  const openToAdd = () => {
-    // handle opening a modal to add category
-    console.log("open");
-  };
-
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const categoryId = searchParams.get("categoryId");
@@ -52,6 +47,5 @@ export const useTodoList = () => {
     toggleIsCompleted,
     updateContent,
     remove,
-    openToAdd,
   };
 };

@@ -4,12 +4,12 @@ import { CategoryService } from "../services/category-service";
 
 export const useCategoryList = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryName, setCategoryName] = useState<string>("");
 
-  const addCategory = (e: any) => {
-    const name = e.target.value;
-    if (!name) return;
+  const addCategory = () => {
+    if (!categoryName) return;
     const categoryItem = CategoryService.add({
-      name,
+      categoryName,
       isSelected: false,
       isDefault: false,
     });
@@ -35,11 +35,6 @@ export const useCategoryList = () => {
     CategoryService.remove(categoryItem);
   };
 
-  const openToAdd = () => {
-    // handle opening a modal to add category
-    console.log("open");
-  };
-
   useEffect(() => {
     const categoryItems = CategoryService.getAll();
     setCategories(categoryItems);
@@ -47,11 +42,12 @@ export const useCategoryList = () => {
 
   return {
     categories,
+    categoryName,
+    setCategoryName,
     addCategory,
     toggleIsSelected,
     toggleIsDefault,
     updateName,
     remove,
-    openToAdd,
   };
 };
