@@ -35,6 +35,11 @@ export const useCategoryList = () => {
     CategoryService.remove(categoryItem);
   };
 
+  const openToAdd = () => {
+    // handle opening a modal to add category
+    console.log("open");
+  };
+
   useEffect(() => {
     const categoryItems = CategoryService.getAll();
     setCategories(categoryItems);
@@ -47,5 +52,6 @@ export const useCategoryList = () => {
     toggleIsDefault,
     updateName,
     remove,
+    openToAdd,
   };
 };

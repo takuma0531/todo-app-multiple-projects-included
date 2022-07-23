@@ -4,12 +4,7 @@ import { useCategoryList } from "../hooks/useCategoryList";
 import { AddButtonView } from "./add-button-view";
 
 export function CategoryListContainer() {
-  const { categories } = useCategoryList();
-
-  const openToAdd = () => {
-    // handle opening a modal to add category
-    console.log("open");
-  };
+  const { categories, openToAdd } = useCategoryList();
 
   return (
     <div>
