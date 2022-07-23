@@ -6,12 +6,14 @@ import { TodoService } from "../services/todo-service";
 export const useTodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const location = useLocation();
+  const [todoContent, setTodoContent] = useState<string>("");
+  const [categoryId, setCategoryId] = useState<string>("");
 
-  const addTodo = (e: any, categoryId: string) => {
-    const content = e.target.value;
-    if (!content) return;
+  const addTodo = () => {
+    if (!todoContent) return;
+    if (!categoryId) throw new Error("CategoryId is not known");
     const todoItem = TodoService.add({
-      content,
+      todoContent,
       isCompleted: false,
       categoryId,
     });
@@ -34,8 +36,7 @@ export const useTodoList = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const categoryId = searchParams.get("categoryId");
-    console.log(categoryId);
+    setCategoryId(searchParams.get("categoryId") || "");
     if (!categoryId) return;
     const todoItems = TodoService.findByCategoryId(categoryId);
     setTodos(todoItems);
@@ -43,6 +44,8 @@ export const useTodoList = () => {
 
   return {
     todos,
+    todoContent,
+    setTodoContent,
     addTodo,
     toggleIsCompleted,
     updateContent,

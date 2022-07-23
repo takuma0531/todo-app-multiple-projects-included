@@ -21,7 +21,7 @@ export function CategoryListContainer() {
       />
       <AddButtonView
         text={"+ New Category"}
-        startFunc={setIsVisible(!isVisible)}
+        startFunc={() => setIsVisible(!isVisible)}
       />
       <CategoryListView categories={categories} />
     </div>
