@@ -6,8 +6,9 @@ const CATEGORY_LIST = "CATEGORY_LIST";
 
 const getAll = () => {
   const categories = localStorageUtil.get(CATEGORY_LIST);
+  console.log(categories);
   categoryList = categories.map(
-    (category: any) => new Category(category._props, category.id)
+    (category: any) => new Category(category._props, category._id)
   );
   return categoryList;
 };

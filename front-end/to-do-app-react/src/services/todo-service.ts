@@ -6,7 +6,7 @@ const TODO_LIST = "TODO_LIST";
 
 const getAll = () => {
   const todos = localStorageUtil.get(TODO_LIST);
-  todoList = todos.map((todo: any) => new Todo(todo._props, todo.id));
+  todoList = todos.map((todo: any) => new Todo(todo._props, todo._id));
   return todoList;
 };
 
