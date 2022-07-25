@@ -13,7 +13,7 @@ export const useTodoList = () => {
     if (!todoContent) return;
     if (!categoryId) throw new Error("CategoryId is not known");
     const todoItem = TodoService.add({
-      todoContent,
+      content: todoContent,
       isCompleted: false,
       categoryId,
     });

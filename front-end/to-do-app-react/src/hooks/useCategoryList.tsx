@@ -9,7 +9,7 @@ export const useCategoryList = () => {
   const addCategory = () => {
     if (!categoryName) return;
     const categoryItem = CategoryService.add({
-      categoryName,
+      name: categoryName,
       isSelected: false,
       isDefault: false,
     });
