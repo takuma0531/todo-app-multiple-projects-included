@@ -12,12 +12,12 @@ export const useTodoList = () => {
   const addTodo = () => {
     if (!todoContent) return;
     if (!categoryId) throw new Error("CategoryId is not known");
-    const todoItem = TodoService.add({
+    TodoService.add({
       content: todoContent,
       isCompleted: false,
       categoryId,
     });
-    setTodos((old: Todo[]) => [...old, todoItem]);
+    setTodos((old: Todo[]) => [...old]); // TODO: it succeeded but why?
   };
 
   const toggleIsCompleted = (todoItem: Todo) => {
@@ -40,7 +40,7 @@ export const useTodoList = () => {
     if (!categoryId) return;
     const todoItems = TodoService.findByCategoryId(categoryId);
     setTodos(todoItems);
-  }, []);
+  }, [categoryId]);
 
   return {
     todos,

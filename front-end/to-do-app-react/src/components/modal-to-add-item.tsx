@@ -18,7 +18,12 @@ export const ModalToAddItem = ({
 }: Props) => {
   return isVisible ? (
     <ModalToAddItemElement>
-      <form onSubmit={() => handleSubmit()}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
         <label>{label}</label>
         <input
           type={"text"}

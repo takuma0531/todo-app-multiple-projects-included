@@ -12,14 +12,14 @@ const getAll = () => {
 
 const findById = (id: string) => {
   const todos = localStorageUtil.get(TODO_LIST);
-  const found = todos.find((todo: any) => todo.id === id);
+  const found = todos.find((todo: any) => todo._id === id);
   const todo = new Todo(found._props, found.id);
   return todo;
 };
 
 const findByCategoryId = (categoryId: string) => {
   const todos = localStorageUtil.get(TODO_LIST);
-  const founds = todos.filter((todo: any) => todo.categoryId === categoryId);
+  const founds = todos.filter((todo: any) => todo._props.categoryId === categoryId);
   todoList = founds.map((todo: any) => new Todo(todo._props, todo.id));
   return todoList;
 };

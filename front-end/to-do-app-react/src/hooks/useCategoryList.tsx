@@ -8,12 +8,12 @@ export const useCategoryList = () => {
 
   const addCategory = () => {
     if (!categoryName) return;
-    const categoryItem = CategoryService.add({
+    CategoryService.add({
       name: categoryName,
       isSelected: false,
       isDefault: false,
     });
-    setCategories((old: Category[]) => [...old, categoryItem]);
+    setCategories((old: Category[]) => [...old]);
   };
 
   const toggleIsSelected = (categoryItem: Category) => {

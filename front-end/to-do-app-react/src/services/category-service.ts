@@ -6,7 +6,6 @@ const CATEGORY_LIST = "CATEGORY_LIST";
 
 const getAll = () => {
   const categories = localStorageUtil.get(CATEGORY_LIST);
-  console.log(categories);
   categoryList = categories.map(
     (category: any) => new Category(category._props, category._id)
   );
@@ -15,7 +14,7 @@ const getAll = () => {
 
 const findById = (id: string) => {
   const categories = localStorageUtil.get(CATEGORY_LIST);
-  const found = categories.find((category: any) => category.id === id);
+  const found = categories.find((category: any) => category._id === id);
   const category = new Category(found._props, found.id);
   return category;
 };
