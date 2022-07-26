@@ -5,19 +5,19 @@ import { Props } from "./todo-container";
 interface ViewProps extends Props {
   todo: Todo;
   index: number;
-  isItemOptionVisible: boolean;
   toggleIsItemOptionVisible: any;
   isEditing: boolean;
-  toggleIsEditing: any;
+  toggleIsCompleted: any;
+  editContent: any;
 }
 
 export const TodoView = ({
   todo,
   index,
-  isItemOptionVisible,
   toggleIsItemOptionVisible,
   isEditing,
-  toggleIsEditing,
+  toggleIsCompleted,
+  editContent,
 }: ViewProps) => {
   return (
     <li key={index}>

@@ -2,6 +2,7 @@ import React from "react";
 import { useItemOption } from "../hooks/useItemOption";
 import { useTodoList } from "../hooks/useTodoList";
 import { Todo } from "../models/todo-model";
+import { ItemOptionView } from "./item-option-view";
 import { TodoView } from "./todo-view";
 
 export interface Props {
@@ -14,13 +15,20 @@ export function TodoContainer({ todo, index }: Props) {
   const { updateContent, toggleIsCompleted, remove } = useTodoList();
 
   return (
-    <TodoView
-      todo={todo}
-      index={index}
-      isItemOptionVisible={isVisible}
-      toggleIsItemOptionVisible={() => setIsVisible(!isVisible)}
-      isEditing={isEditing}
-      toggleIsEditing={() => setIsEditing(!isEditing)}
-    />
+    <div>
+      <TodoView
+        todo={todo}
+        index={index}
+        toggleIsItemOptionVisible={() => setIsVisible(!isVisible)}
+        isEditing={isEditing}
+        toggleIsCompleted={() => toggleIsCompleted(todo)}
+        editContent={updateContent}
+      />
+      <ItemOptionView
+        isVisible={isVisible}
+        toggleIsEditing={() => setIsEditing(!isEditing)}
+        remove={() => remove(todo)}
+      />
+    </div>
   );
 }
