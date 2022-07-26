@@ -19,7 +19,9 @@ const findById = (id: string) => {
 
 const findByCategoryId = (categoryId: string) => {
   const todos = localStorageUtil.get(TODO_LIST);
-  const founds = todos.filter((todo: any) => todo._props.categoryId === categoryId);
+  const founds = todos.filter(
+    (todo: any) => todo._props.categoryId === categoryId
+  );
   todoList = founds.map((todo: any) => new Todo(todo._props, todo.id));
   return todoList;
 };
