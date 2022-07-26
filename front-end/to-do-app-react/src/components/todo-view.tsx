@@ -21,7 +21,15 @@ export const TodoView = ({
 }: ViewProps) => {
   return (
     <li key={index}>
-      {todo.content}
+      <span onClick={() => toggleIsCompleted()}>
+        {todo.isCompleted ? "Completed" : "Ongoing"}
+      </span>
+      <input
+        className="content"
+        value={todo.content}
+        onChange={(e) => editContent(e.target.value, todo)}
+        disabled={!isEditing}
+      />
       <span>{/* createdAt */}</span>
       {/* Temporary TODO: */}
       <span onClick={() => toggleIsItemOptionVisible()}>...</span>
