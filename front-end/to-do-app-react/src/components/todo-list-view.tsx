@@ -15,6 +15,7 @@ export const TodoListView = ({ todos }: Props) => {
         <li key={index}>
           {todo.content}
           <span>{/* createdAt */}</span>
+          <span>...</span>
         </li>
       );
     });
