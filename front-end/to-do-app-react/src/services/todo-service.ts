@@ -22,7 +22,7 @@ const findByCategoryId = (categoryId: string) => {
   const founds = todos.filter(
     (todo: any) => todo._props.categoryId === categoryId
   );
-  todoList = founds.map((todo: any) => new Todo(todo._props, todo.id));
+  todoList = founds.map((todo: any) => new Todo(todo._props, todo._id));
   return todoList;
 };
 
@@ -33,18 +33,17 @@ const add = (todoItem: any) => {
   return todo;
 };
 
-const update = (todoItem: any) => {
+const update = (todoItem: Todo) => {
   const indexOfTodoToEdit = todoList.findIndex(
-    (todo: any) => todo.id === todoItem.id
+    (todo: Todo) => todo.id === todoItem.id
   );
-  todoList[indexOfTodoToEdit] = new Todo(todoItem, todoItem.id);
+  todoList[indexOfTodoToEdit] = todoItem;
   localStorageUtil.set(TODO_LIST, todoList);
   return todoList[indexOfTodoToEdit];
 };
 
-const remove = (todoItem: any) => {
-  if (todoItem.isDefault) throw new Error("Default Todo cannot be removed");
-  todoList = todoList.filter((todo: any) => todo.id !== todoItem.id);
+const remove = (todoItem: Todo) => {
+  todoList = todoList.filter((todo: Todo) => todo.id !== todoItem.id);
   localStorageUtil.set(TODO_LIST, todoList);
 };
 
