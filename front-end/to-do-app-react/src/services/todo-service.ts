@@ -45,6 +45,7 @@ const update = (todoItem: Todo) => {
 const remove = (todoItem: Todo) => {
   todoList = todoList.filter((todo: Todo) => todo.id !== todoItem.id);
   localStorageUtil.set(TODO_LIST, todoList);
+  return todoList;
 };
 
 export const TodoService = Object.freeze({

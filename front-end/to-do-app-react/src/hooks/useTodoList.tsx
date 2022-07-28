@@ -33,7 +33,8 @@ export const useTodoList = () => {
   };
 
   const remove = (todoItem: Todo) => {
-    TodoService.remove(todoItem);
+    const list = TodoService.remove(todoItem);
+    setTodos(list);
   };
 
   useEffect(() => {
