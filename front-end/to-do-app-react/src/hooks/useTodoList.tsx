@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { Todo } from "../models/todo-model";
 import { TodoService } from "../services/todo-service";
 
+// TODO: separate useState and functions in useContenxt and container respectively
+
 export const useTodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const location = useLocation();
