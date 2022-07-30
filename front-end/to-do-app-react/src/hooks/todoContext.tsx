@@ -35,7 +35,7 @@ export const TodoListProvider = ({ children }: Props) => {
       isCompleted: false,
       categoryId,
     });
-    setTodos((old: Todo[]) => [...old, created]);
+    setTodos((old: Todo[]) => [created, ...old]);
   };
 
   const toggleIsCompleted = (todoItem: Todo) => {
