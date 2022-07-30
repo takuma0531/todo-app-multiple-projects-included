@@ -27,7 +27,7 @@ export const TodoView = ({
       <input
         className="content"
         value={todo.content}
-        onChange={(e) => editContent(e.target.value, todo)}
+        onChange={(e) => editContent(e.target.value)}
         disabled={!isEditing}
       />
       <span>{/* createdAt */}</span>

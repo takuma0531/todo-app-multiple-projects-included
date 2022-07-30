@@ -39,7 +39,7 @@ const update = (todoItem: Todo) => {
   );
   todoList[indexOfTodoToEdit] = todoItem;
   localStorageUtil.set(TODO_LIST, todoList);
-  return todoList[indexOfTodoToEdit];
+  return todoList;
 };
 
 const remove = (todoItem: Todo) => {
