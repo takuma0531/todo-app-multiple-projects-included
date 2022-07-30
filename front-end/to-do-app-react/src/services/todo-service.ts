@@ -23,7 +23,7 @@ const findByCategoryId = (categoryId: string) => {
     (todo: any) => todo._props.categoryId === categoryId
   );
   todoList = founds.map((todo: any) => new Todo(todo._props, todo._id));
-  return todoList;
+  return [...todoList].reverse();
 };
 
 const add = (todoItem: any) => {
