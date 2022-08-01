@@ -1,15 +1,18 @@
 import React from "react";
 import { RouteHandler } from "./routes";
 import "./App.css";
-import { TodoListProvider } from "./hooks/todoContext";
-import { ModalProvider } from "./hooks/modalContext";
+import { TodoListProvider } from "./hooks/todo-context";
+import { ModalProvider } from "./hooks/modal-context";
+import { CategoryProvider } from "./hooks/category-context";
 
 function App() {
   return (
     <div className="App">
       <TodoListProvider>
         <ModalProvider>
-          <RouteHandler />
+          <CategoryProvider>
+            <RouteHandler />
+          </CategoryProvider>
         </ModalProvider>
       </TodoListProvider>
     </div>

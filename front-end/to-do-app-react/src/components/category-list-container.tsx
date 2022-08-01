@@ -1,17 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CategoryListView } from "./category-list-view";
-import { useCategoryList } from "../hooks/useCategoryList";
-import { ModalContext, ModalContextInterface } from "../hooks/modalContext";
+import { useModal } from "../hooks/modal-context";
+import { useCategory } from "../hooks/category-context";
 import { AddButtonView } from "./add-button-view";
 import { ModalContentToAddItem } from "./modal-content-to-add-item";
 import { ModalContainer } from "./modal-container";
+import { CategoryService } from "../services/category-service";
 
 export function CategoryListContainer() {
-  const { categories, categoryName, setCategoryName, addCategory } =
-    useCategoryList();
-  const { isVisible, setIsVisible } = useContext(
-    ModalContext
-  ) as ModalContextInterface;
+  const {
+    categories,
+    categoryName,
+    setCategories,
+    setCategoryName,
+    addCategory,
+  } = useCategory();
+  const { isVisible, setIsVisible } = useModal();
+
+  useEffect(() => {
+    const categoryItems = CategoryService.getAll();
+    setCategories(categoryItems);
+  }, []);
 
   return (
     <div>

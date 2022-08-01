@@ -1,8 +1,27 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Category } from "../models/category-model";
 import { CategoryService } from "../services/category-service";
 
-export const useCategoryList = () => {
+export interface CategoryContextInterface {
+  categories: Category[];
+  categoryName: string;
+  setCategories: any;
+  setCategoryName: any;
+  addCategory: any;
+  toggleIsSelected: any;
+  toggleIsDefault: any;
+  updateName: any;
+  remove: any;
+}
+
+interface Props {
+  children: any;
+}
+
+export const CategoryContext =
+  React.createContext<CategoryContextInterface | null>(null);
+
+export const CategoryProvider = ({ children }: Props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
 
@@ -35,19 +54,24 @@ export const useCategoryList = () => {
     CategoryService.remove(categoryItem);
   };
 
-  useEffect(() => {
-    const categoryItems = CategoryService.getAll();
-    setCategories(categoryItems);
-  }, []);
-
-  return {
-    categories,
-    categoryName,
-    setCategoryName,
-    addCategory,
-    toggleIsSelected,
-    toggleIsDefault,
-    updateName,
-    remove,
-  };
+  return (
+    <CategoryContext.Provider
+      value={{
+        categories,
+        categoryName,
+        setCategories,
+        setCategoryName,
+        addCategory,
+        toggleIsSelected,
+        toggleIsDefault,
+        updateName,
+        remove,
+      }}
+    >
+      {children}
+    </CategoryContext.Provider>
+  );
 };
+
+export const useCategory = () =>
+  React.useContext(CategoryContext) as CategoryContextInterface;

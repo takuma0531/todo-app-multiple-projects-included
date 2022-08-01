@@ -75,4 +75,5 @@ export const TodoListProvider = ({ children }: Props) => {
   );
 };
 
-export const useTodoList = () => React.useContext(TodoListContext);
+export const useTodoList = () =>
+  React.useContext(TodoListContext) as TodoListContextInterface;

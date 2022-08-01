@@ -22,3 +22,6 @@ export const ModalProvider = ({ children }: Props) => {
     </ModalContext.Provider>
   );
 };
+
+export const useModal = () =>
+  React.useContext(ModalContext) as ModalContextInterface;

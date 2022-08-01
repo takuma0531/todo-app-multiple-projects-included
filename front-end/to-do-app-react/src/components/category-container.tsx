@@ -1,14 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { ModalContext, ModalContextInterface } from "../hooks/modalContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useModal } from "../hooks/modal-context";
 import { TodoListView } from "./todo-list-view";
 import { AddButtonView } from "./add-button-view";
 import { ModalContentToAddItem } from "./modal-content-to-add-item";
-import {
-  TodoListContext,
-  TodoListContextInterface,
-} from "../hooks/todoContext";
+import { useTodoList } from "../hooks/todo-context";
 import { TodoService } from "../services/todo-service";
 import { ModalContainer } from "./modal-container";
 
@@ -21,12 +17,10 @@ export const CategoryContainer = () => {
     setTodoContent,
     setCategoryId,
     addTodo,
-  } = useContext(TodoListContext) as TodoListContextInterface;
+  } = useTodoList();
   const location = useLocation();
   const navigate = useNavigate();
-  const { isVisible, setIsVisible } = useContext(
-    ModalContext
-  ) as ModalContextInterface;
+  const { isVisible, setIsVisible } = useModal();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);

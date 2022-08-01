@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ModalView } from "./modal-view";
-import { ModalContext, ModalContextInterface } from "../hooks/modalContext";
+import { ModalContext, ModalContextInterface } from "../hooks/modal-context";
 
 interface Props {
   children: any;

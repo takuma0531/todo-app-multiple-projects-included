@@ -6,7 +6,7 @@ import { TodoView } from "./todo-view";
 import {
   TodoListContext,
   TodoListContextInterface,
-} from "../hooks/todoContext";
+} from "../hooks/todo-context";
 
 export interface Props {
   todo: Todo;
