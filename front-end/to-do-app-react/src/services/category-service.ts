@@ -9,7 +9,7 @@ const getAll = () => {
   categoryList = categories.map(
     (category: any) => new Category(category._props, category._id)
   );
-  return categoryList;
+  return [...categoryList].reverse();
 };
 
 const findById = (id: string) => {

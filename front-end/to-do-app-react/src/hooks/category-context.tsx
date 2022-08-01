@@ -27,12 +27,12 @@ export const CategoryProvider = ({ children }: Props) => {
 
   const addCategory = () => {
     if (!categoryName) return;
-    CategoryService.add({
+    const categoryItem = CategoryService.add({
       name: categoryName,
       isSelected: false,
       isDefault: false,
     });
-    setCategories((old: Category[]) => [...old]);
+    setCategories((old: Category[]) => [categoryItem, ...old]);
   };
 
   const toggleIsSelected = (categoryItem: Category) => {
