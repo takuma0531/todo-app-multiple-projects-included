@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useModal } from "../hooks/useModal";
+import { ModalContext, ModalContextInterface } from "../hooks/modalContext";
 import { TodoListView } from "./todo-list-view";
 import { AddButtonView } from "./add-button-view";
-import { ModalToAddItem } from "./modal-to-add-item";
+import { ModalContentToAddItem } from "./modal-content-to-add-item";
 import {
-  TodoListProvider,
   TodoListContext,
   TodoListContextInterface,
 } from "../hooks/todoContext";
 import { TodoService } from "../services/todo-service";
+import { ModalContainer } from "./modal-container";
 
 export const CategoryContainer = () => {
   const {
@@ -24,7 +24,9 @@ export const CategoryContainer = () => {
   } = useContext(TodoListContext) as TodoListContextInterface;
   const location = useLocation();
   const navigate = useNavigate();
-  const { isVisible, setIsVisible } = useModal();
+  const { isVisible, setIsVisible } = useContext(
+    ModalContext
+  ) as ModalContextInterface;
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -36,13 +38,15 @@ export const CategoryContainer = () => {
 
   return (
     <div>
-      <ModalToAddItem
-        label={"Todo Content"}
-        value={todoContent}
-        handleChange={(e: any) => setTodoContent(e.target.value)}
-        handleSubmit={() => addTodo()}
-        isVisible={isVisible}
-      />
+      <ModalContainer>
+        <ModalContentToAddItem
+          label={"Todo Content"}
+          value={todoContent}
+          handleChange={(e: any) => setTodoContent(e.target.value)}
+          handleSubmit={() => addTodo()}
+          isVisible={isVisible}
+        />
+      </ModalContainer>
       <button onClick={() => navigate(-1)}>Go back</button>
       <AddButtonView
         text={"+ New Todo"}

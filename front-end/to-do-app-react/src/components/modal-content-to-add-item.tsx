@@ -9,7 +9,7 @@ interface Props {
   isVisible: boolean;
 }
 
-export const ModalToAddItem = ({
+export const ModalContentToAddItem = ({
   label,
   value,
   handleChange,

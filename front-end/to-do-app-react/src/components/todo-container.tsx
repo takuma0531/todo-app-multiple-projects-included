@@ -3,7 +3,6 @@ import { useItemOption } from "../hooks/useItemOption";
 import { Todo } from "../models/todo-model";
 import { ItemOptionView } from "./item-option-view";
 import { TodoView } from "./todo-view";
-import { TodoService } from "../services/todo-service";
 import {
   TodoListContext,
   TodoListContextInterface,
