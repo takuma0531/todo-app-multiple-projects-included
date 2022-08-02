@@ -33,6 +33,7 @@ export const CategoryProvider = ({ children }: Props) => {
       isDefault: false,
     });
     setCategories((old: Category[]) => [categoryItem, ...old]);
+    setCategoryName("");
   };
 
   const toggleIsSelected = (categoryItem: Category) => {
