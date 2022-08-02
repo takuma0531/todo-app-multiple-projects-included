@@ -35,7 +35,7 @@ export const TodoView = ({
         disabled={!isEditing}
       />
       <span className={"updated-time"}>
-        {todo.updatedAt?.toString().split("T")[0]}
+        {todo.updatedAt?.toString().split("T")[0].replace(/-/g, "/")}
       </span>
       <div className="item-option-wrapper">
         <div className={"dots"} onClick={() => toggleIsItemOptionVisible()}>
