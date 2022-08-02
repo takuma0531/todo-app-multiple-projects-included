@@ -10,6 +10,7 @@ interface ViewProps extends Props {
   isEditing: boolean;
   toggleIsCompleted: any;
   editContent: any;
+  // reference: any;
   children: any;
 }
 
@@ -21,6 +22,7 @@ export const TodoView = ({
   toggleIsCompleted,
   editContent,
   children,
+  // reference,
 }: ViewProps) => {
   return (
     <TodoViewElement key={index}>
@@ -38,7 +40,11 @@ export const TodoView = ({
         {todo.updatedAt?.toString().split("T")[0].replace(/-/g, "/")}
       </span>
       <div className="item-option-wrapper">
-        <div className={"dots"} onClick={() => toggleIsItemOptionVisible()}>
+        <div
+          className={"dots"}
+          // ref={reference}
+          onClick={() => toggleIsItemOptionVisible()}
+        >
           <span className={"dot"} />
           <span className={"dot"} />
           <span className={"dot"} />

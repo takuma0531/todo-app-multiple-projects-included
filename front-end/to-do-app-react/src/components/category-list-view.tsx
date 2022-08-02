@@ -12,10 +12,8 @@ interface Props {
 export function CategoryListView({ categories, children }: Props) {
   const renderCategories = (categories: Category[]) =>
     categories.map((category: Category, index: number) => (
-      <Link to={`${RoutePath.CATEGORY}?categoryId=${category.id}`}>
-        <div className={"item"} key={index}>
-          {category.name}
-        </div>
+      <Link to={`${RoutePath.CATEGORY}?categoryId=${category.id}`} key={index}>
+        <div className={"item"}>{category.name}</div>
       </Link>
     ));
 
