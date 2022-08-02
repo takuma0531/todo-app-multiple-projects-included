@@ -14,4 +14,9 @@ export const AddButtonView = ({ text, startFunc }: Props) => {
   );
 };
 
-const AddButtonViewElement = styled.button``;
+const AddButtonViewElement = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  color: #ffffffd6;
+`;

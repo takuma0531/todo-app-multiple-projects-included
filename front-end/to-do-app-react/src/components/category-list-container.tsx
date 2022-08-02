@@ -33,11 +33,12 @@ export function CategoryListContainer() {
           isVisible={isVisible}
         />
       </ModalContainer>
-      <AddButtonView
-        text={"+ New Category"}
-        startFunc={() => setIsVisible(!isVisible)}
-      />
-      <CategoryListView categories={categories} />
+      <CategoryListView categories={categories}>
+        <AddButtonView
+          text={"+ New Category"}
+          startFunc={() => setIsVisible(!isVisible)}
+        />
+      </CategoryListView>
     </div>
   );
 }
