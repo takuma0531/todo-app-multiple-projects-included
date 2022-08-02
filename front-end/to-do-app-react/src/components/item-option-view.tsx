@@ -21,6 +21,7 @@ export const ItemOptionView = ({ isVisible, toggleIsEditing, remove }: Props) =>
 
 const ItemOptionViewElement = styled.div`
   position: absolute;
+  top: 0;
   right: 11%;
   z-index: 1;
   background: #00a699;
@@ -38,6 +39,8 @@ const ItemOptionViewElement = styled.div`
 
     li {
       margin: 3px auto;
+      // border-bottom: 1px solid white;
+      width: 100%;
 
       :hover {
         cursor: pointer;

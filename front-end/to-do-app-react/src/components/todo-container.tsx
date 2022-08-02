@@ -4,10 +4,7 @@ import { useItemOption } from "../hooks/useItemOption";
 import { Todo } from "../models/todo-model";
 import { ItemOptionView } from "./item-option-view";
 import { TodoView } from "./todo-view";
-import {
-  TodoListContext,
-  TodoListContextInterface,
-} from "../hooks/todo-context";
+import { useTodoList } from "../hooks/todo-context";
 
 export interface Props {
   todo: Todo;
@@ -16,9 +13,7 @@ export interface Props {
 
 export function TodoContainer({ todo, index }: Props) {
   const { isVisible, setIsVisible, isEditing, setIsEditing } = useItemOption();
-  const { updateContent, toggleIsCompleted, remove } = useContext(
-    TodoListContext
-  ) as TodoListContextInterface;
+  const { updateContent, toggleIsCompleted, remove } = useTodoList();
 
   return (
     <TodoContainerElement>
