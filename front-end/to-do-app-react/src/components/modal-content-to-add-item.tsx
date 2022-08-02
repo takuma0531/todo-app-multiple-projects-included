@@ -6,7 +6,7 @@ interface Props {
   value: string;
   handleChange: any;
   handleSubmit: any;
-  isVisible: boolean;
+  toggleIsVisible: any;
 }
 
 export const ModalContentToAddItem = ({
@@ -14,14 +14,15 @@ export const ModalContentToAddItem = ({
   value,
   handleChange,
   handleSubmit,
-  isVisible,
+  toggleIsVisible,
 }: Props) => {
-  return isVisible ? (
+  return (
     <ModalToAddItemElement>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
+          toggleIsVisible();
         }}
       >
         <label>{label}</label>
@@ -34,8 +35,6 @@ export const ModalContentToAddItem = ({
         <input type="submit" value="Confirm" />
       </form>
     </ModalToAddItemElement>
-  ) : (
-    <div></div>
   );
 };
 

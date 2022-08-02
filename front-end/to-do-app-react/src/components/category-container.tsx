@@ -38,7 +38,7 @@ export const CategoryContainer = () => {
           value={todoContent}
           handleChange={(e: any) => setTodoContent(e.target.value)}
           handleSubmit={() => addTodo()}
-          isVisible={isVisible}
+          toggleIsVisible={() => setIsVisible(!isVisible)}
         />
       </ModalContainer>
       <button onClick={() => navigate(-1)}>Go back</button>

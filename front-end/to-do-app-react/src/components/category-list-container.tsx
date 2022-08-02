@@ -30,7 +30,7 @@ export function CategoryListContainer() {
           value={categoryName}
           handleChange={(e: any) => setCategoryName(e.target.value)}
           handleSubmit={() => addCategory()}
-          isVisible={isVisible}
+          toggleIsVisible={() => setIsVisible(!isVisible)}
         />
       </ModalContainer>
       <CategoryListView categories={categories}>
