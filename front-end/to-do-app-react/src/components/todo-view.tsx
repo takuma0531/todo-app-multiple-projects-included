@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Todo } from "../models/todo-model";
 import { Props } from "./todo-container";
 
@@ -20,19 +21,72 @@ export const TodoView = ({
   editContent,
 }: ViewProps) => {
   return (
-    <li key={index}>
-      <span onClick={() => toggleIsCompleted()}>
-        {todo.isCompleted ? "Completed" : "Ongoing"}
-      </span>
+    <TodoViewElement key={index}>
+      <IsCompletedElement
+        onClick={() => toggleIsCompleted()}
+        isCompleted={todo.isCompleted}
+      />
       <input
         className="content"
         value={todo.content}
         onChange={(e) => editContent(e.target.value)}
         disabled={!isEditing}
       />
-      <span>{/* createdAt */}</span>
-      {/* Temporary TODO: */}
-      <span onClick={() => toggleIsItemOptionVisible()}>...</span>
-    </li>
+      <span className={"updated-time"}>
+        {todo.updatedAt?.toString().split("T")[0]}
+      </span>
+      <div className={"dots"} onClick={() => toggleIsItemOptionVisible()}>
+        <span className={"dot"} />
+        <span className={"dot"} />
+        <span className={"dot"} />
+      </div>
+    </TodoViewElement>
   );
 };
+
+const TodoViewElement = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  gap: 10px;
+  font-size: 18px;
+  width: 100%;
+
+  span.updated-time {
+    font-size: 16px;
+    color: #767676;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    :hover {
+      cursor: pointer;
+      opacity: 80%;
+    }
+
+    .dot {
+      height: 5px;
+      width: 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  }
+`;
+
+const IsCompletedElement = styled.div<{ isCompleted: boolean }>`
+  height: 20px;
+  width: 20px;
+  background-color: ${({ isCompleted }) => (isCompleted ? "#FF5A5F" : "none")};
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #bbb;
+
+  :hover {
+    cursor: pointer;
+  }
+`;

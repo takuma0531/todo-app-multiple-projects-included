@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useModal } from "../hooks/modal-context";
 import { TodoListView } from "./todo-list-view";
@@ -41,12 +41,17 @@ export const CategoryContainer = () => {
           toggleIsVisible={() => setIsVisible(!isVisible)}
         />
       </ModalContainer>
-      <button onClick={() => navigate(-1)}>Go back</button>
-      <AddButtonView
-        text={"+ New Todo"}
-        startFunc={() => setIsVisible(!isVisible)}
-      />
-      <TodoListView todos={todos} />
+      <TodoListView todos={todos}>
+        <button className={"go-back-button"} onClick={() => navigate(-1)}>
+          {"< Back"}
+        </button>
+        <AddButtonView
+          text={"+ New Todo"}
+          startFunc={() => setIsVisible(!isVisible)}
+          background={"none"}
+          color={"#00a699"}
+        />
+      </TodoListView>
     </div>
   );
 };

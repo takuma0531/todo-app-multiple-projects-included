@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
 import { useItemOption } from "../hooks/useItemOption";
 import { Todo } from "../models/todo-model";
 import { ItemOptionView } from "./item-option-view";
@@ -20,7 +21,7 @@ export function TodoContainer({ todo, index }: Props) {
   ) as TodoListContextInterface;
 
   return (
-    <div>
+    <TodoContainerElement>
       <TodoView
         todo={todo}
         index={index}
@@ -34,6 +35,10 @@ export function TodoContainer({ todo, index }: Props) {
         toggleIsEditing={() => setIsEditing(!isEditing)}
         remove={() => remove(todo)}
       />
-    </div>
+    </TodoContainerElement>
   );
 }
+
+const TodoContainerElement = styled.div`
+  position: relative;
+`;
