@@ -19,4 +19,8 @@ const AddButtonViewElement = styled.button`
   outline: none;
   background: none;
   color: #ffffffd6;
+  font-size: 17px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 `;

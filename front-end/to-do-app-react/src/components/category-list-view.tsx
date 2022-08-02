@@ -53,5 +53,10 @@ const CategoryListViewElement = styled.div`
     border-radius: 10px;
     color: #ffffffd6;
     font-weight: semi-bold;
+
+    :hover {
+      cursor: pointer;
+      background: #00a699f2;
+    }
   }
 `;
