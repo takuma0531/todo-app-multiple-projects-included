@@ -29,12 +29,13 @@ export function TodoContainer({ todo, index }: Props) {
         isEditing={isEditing}
         toggleIsCompleted={() => toggleIsCompleted(todo)}
         editContent={updateContent}
-      />
-      <ItemOptionView
-        isVisible={isVisible}
-        toggleIsEditing={() => setIsEditing(!isEditing)}
-        remove={() => remove(todo)}
-      />
+      >
+        <ItemOptionView
+          isVisible={isVisible}
+          toggleIsEditing={() => setIsEditing(!isEditing)}
+          remove={() => remove(todo)}
+        />
+      </TodoView>
     </TodoContainerElement>
   );
 }
